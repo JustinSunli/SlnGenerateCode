@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Spring.Core">
+      <HintPath>..\ReferenceLibrary\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\ReferenceLibrary\Spring.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,7 +45,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColumnsDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomSpring.Core\CustomSpring.Core.csproj">
+      <Project>{4de64906-b976-4de5-a7d3-35772dd086c1}</Project>
+      <Name>CustomSpring.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Core\Foundation.Core.csproj">
+      <Project>{398b7fee-94cd-4f66-a5b4-180f8e443c83}</Project>
+      <Name>Foundation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iCat.Generate.IDao\iCat.Generate.IDao.csproj">
+      <Project>{841981b4-02c3-4307-abad-4085b2504e93}</Project>
+      <Name>iCat.Generate.IDao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iCat.Generate.Model\iCat.Generate.Model.csproj">
+      <Project>{cc9436b2-96d3-42b7-ae03-aaf3a37b7d78}</Project>
+      <Name>iCat.Generate.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

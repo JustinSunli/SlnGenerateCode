@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx">
+
+  <db:provider id="dbProvider_dbsystem"
+                provider="SqlServer-2.0"
+                connectionString="Data Source=.;Initial Catalog=DevIMDB;Persist Security Info=True;User ID=sa;Password=longhope"/>
+  
+  <object id="adoTemplate" type="Spring.Data.Core.AdoTemplate, Spring.Data">
+    <property name="DbProvider" ref="dbProvider_dbsystem"/>
+    <property name="DataReaderWrapperType" value="Spring.Data.Support.NullMappingDataReader, Spring.Data"/>
+  </object>
+
+  <!-- Transaction Manager if using two databases。 -->
+  <object id="transactionManager"
+          type="Spring.Data.Core.ServiceDomainPlatformTransactionManager, Spring.Data">
+  </object>
+  <!-- Transaction aspect -->
+  <tx:attribute-driven/>
+
+</objects>

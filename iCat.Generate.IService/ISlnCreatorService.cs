@@ -5,7 +5,8 @@ using System.Text;
 
 namespace iCat.Generate.IService
 {
-    public class Class1
+    public interface ISlnCreatorService
     {
+        void Generate();
     }
 }

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace iCat.Generate.ServiceTest
+namespace iCat.Generate.IService
 {
-    public class Class1
+    public interface IFileCreatorService
     {
+        void Generate();
     }
 }

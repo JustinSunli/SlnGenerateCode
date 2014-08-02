@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iCatGenerator", "iCatGenera
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iCat.Generate.Model", "iCat.Generate.Model\iCat.Generate.Model.csproj", "{CC9436B2-96D3-42B7-AE03-AAF3A37B7D78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceLibrary", "ReferenceLibrary\ReferenceLibrary.csproj", "{850732B3-99E9-4DAC-8BFA-5A5F132F8646}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{CC9436B2-96D3-42B7-AE03-AAF3A37B7D78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC9436B2-96D3-42B7-AE03-AAF3A37B7D78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC9436B2-96D3-42B7-AE03-AAF3A37B7D78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{850732B3-99E9-4DAC-8BFA-5A5F132F8646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{850732B3-99E9-4DAC-8BFA-5A5F132F8646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{850732B3-99E9-4DAC-8BFA-5A5F132F8646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{850732B3-99E9-4DAC-8BFA-5A5F132F8646}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

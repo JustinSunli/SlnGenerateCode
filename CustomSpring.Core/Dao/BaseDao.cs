@@ -129,14 +129,20 @@ namespace CustomSpring.Core.Dao
         protected T GetDataSet<T>(
             QueryCondition condition)
         {
-            //??构建sql语句
+            return this.GetDataSet<T>(condition, null);
+        }
+
+        protected T GetDataSet<T>(
+            QueryCondition condition,
+            string sql)
+        { 
             T ds = default(T);
             Type t = typeof(T);
             ds = (T)Activator.CreateInstance(t);
             DataSet temp = ds as DataSet;
-            string sql = string.Format(
+            sql = (string.IsNullOrEmpty(sql))?string.Format(
                 "select * from [{0}]", 
-                temp.Tables[0].TableName);
+                temp.Tables[0].TableName):sql;
             sql = SQLCreator.GetSelectSQL(sql, condition, temp);
             
             this.AdoTemplate.DataSetFill(temp, 
@@ -144,6 +150,7 @@ namespace CustomSpring.Core.Dao
                 new string[1] { temp.Tables[0].TableName }
                 );
             return ds;
+            
         }
     }
 }
