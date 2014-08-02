@@ -34,6 +34,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceLibrary\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\ReferenceLibrary\Spring.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,9 +50,17 @@
     <Compile Include="TestServiceColumns.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Foundation.Core\Foundation.Core.csproj">
+      <Project>{398b7fee-94cd-4f66-a5b4-180f8e443c83}</Project>
+      <Name>Foundation.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\iCat.Generate.IService\iCat.Generate.IService.csproj">
       <Project>{a516e39d-7ea6-45a9-a978-1ec39a78dac6}</Project>
       <Name>iCat.Generate.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iCat.Generate.Model\iCat.Generate.Model.csproj">
+      <Project>{cc9436b2-96d3-42b7-ae03-aaf3a37b7d78}</Project>
+      <Name>iCat.Generate.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

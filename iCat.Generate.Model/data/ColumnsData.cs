@@ -29,8 +29,8 @@ namespace iCat.Generate.Model
         private void BuildData()
         {
             DataTable dt = new DataTable(SysColumns);
-            
-            dt.Columns.Add(name, typeof(System.Int32));
+
+            dt.Columns.Add(name, typeof(System.String));
             dt.Columns.Add(xtype, typeof(System.String));
             dt.Columns.Add(value, typeof(System.String));
             //dt.PrimaryKey = new DataColumn[1] { dt.Columns[uid] };

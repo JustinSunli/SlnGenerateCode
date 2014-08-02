@@ -135,7 +135,10 @@ namespace CustomSpring.Core.Dao
         protected T GetDataSet<T>(
             QueryCondition condition,
             string sql)
-        { 
+        {
+            if (condition == null)
+                condition = new QueryCondition();
+
             T ds = default(T);
             Type t = typeof(T);
             ds = (T)Activator.CreateInstance(t);
