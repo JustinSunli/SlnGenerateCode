@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{398B7FEE-94CD-4F66-A5B4-180F8E443C83}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Foundation.Core</RootNamespace>
+    <AssemblyName>Foundation.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="condition\QueryCondition.cs" />
+    <Compile Include="config\Config.cs" />
+    <Compile Include="console\ColorControler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="console\ExtConsole.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="datacontroller\DataLibBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="datacontroller\IEntity.cs" />
+    <Compile Include="datacontroller\SqlType.cs" />
+    <Compile Include="condition\DBCondition.cs" />
+    <Compile Include="condition\DBConditions.cs" />
+    <Compile Include="condition\EnumCondition.cs" />
+    <Compile Include="condition\EnumSqlType.cs" />
+    <Compile Include="encrpt\Encrypt.cs" />
+    <Compile Include="json\DataTableConverter.cs" />
+    <Compile Include="json\JsonFilter.cs" />
+    <Compile Include="json\JsonHelper.cs" />
+    <Compile Include="json\TreeJsonHelper.cs" />
+    <Compile Include="condition\EnumSQLOrderBY.cs" />
+    <Compile Include="condition\PageSort.cs" />
+    <Compile Include="condition\PageSorts.cs" />
+    <Compile Include="message\ExtMessage.cs" />
+    <Compile Include="os\OS.cs" />
+    <Compile Include="os\OSProcess.cs" />
+    <Compile Include="password\Password.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="register\HardDisk.cs" />
+    <Compile Include="register\RegisterInformation.cs" />
+    <Compile Include="register\SoftwareRegister.cs" />
+    <Compile Include="txtlog\FastDirectoryEnumerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="txtlog\LogInterface.cs" />
+    <Compile Include="txtlog\LogBusiness.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="txtlog\LogTextOp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="wpf\WinIconStatus.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="listpage\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
