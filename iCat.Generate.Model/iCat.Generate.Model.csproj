@@ -43,6 +43,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="entity\Copyright.cs" />
+    <Compile Include="entity\DBStructure.cs" />
+    <Compile Include="entity\Namespace.cs" />
+    <Compile Include="entity\TableStructure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

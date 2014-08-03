@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColumnsService.cs" />
+    <Compile Include="GenFileDaoService.cs" />
+    <Compile Include="GenFileServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
