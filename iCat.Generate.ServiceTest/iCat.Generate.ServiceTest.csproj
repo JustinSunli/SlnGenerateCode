@@ -63,6 +63,10 @@
       <Project>{cc9436b2-96d3-42b7-ae03-aaf3a37b7d78}</Project>
       <Name>iCat.Generate.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\iCat.Generate.Service\iCat.Generate.Service.csproj">
+      <Project>{060769cd-d844-41f6-9742-168a1a8f8bde}</Project>
+      <Name>iCat.Generate.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DBConfig.xml">

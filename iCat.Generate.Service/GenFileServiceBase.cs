@@ -13,9 +13,14 @@ namespace iCat.Generate.Service
             #region
             StringBuilder strusings = new StringBuilder();
             for (int i = 0; i < usings.Count; i++)
-                strusings.AppendLine(
-                    string.Format("using {0}",
-                    usings[i]));
+            {
+                string temp = string.Format("using {0};",
+                    usings[i]);
+                if (i == usings.Count-1)
+                    strusings.Append(temp);
+                else
+                    strusings.AppendLine(temp);
+            }
             return strusings.ToString();
             #endregion
 

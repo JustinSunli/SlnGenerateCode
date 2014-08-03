@@ -17,24 +17,24 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace {2}
-{
+{{
     public class {3}Dao : BaseDao, I{3}Dao
-    {
+    {{
         public void Save({3}Data {4}Data)
-        {
+        {{
             base.Save({4}Data);
-        }
+        }}
         public int GetMaxId({3}Data {4}Data)
-        {
+        {{
             return base.GetMaxId({4}Data);
-        }
+        }}
         public {3}Data SelectSingleT(
             QueryCondition condition)
-        {
+        {{
             return base.GetDataSet<{3}Data>(condition);
-        }
-    }
-}";
+        }}
+    }}
+}}";
         //4为首字母小写的表名，3为原始表名，
         public string GetCode(
             TableStructure table,
@@ -43,12 +43,12 @@ namespace {2}
         {
             #region
             string all = "";
-            IList<object> args = new List<object>();
-            args.Add(copyright);
-            args.Add(getUsing(nSpace));
-            args.Add(nSpace._Dao);
-            args.Add(table._Name);
-            args.Add(table._ParamNamePrefix);
+            string[] args = new string[5];
+            args[0] = copyright.ToString();
+            args[1] = getUsing(nSpace);
+            args[2] = nSpace._Dao;
+            args[3] = table._Name;
+            args[4] = table._ParamNamePrefix;
             all = string.Format(_fileTemplate, args);
             Console.WriteLine(all);
             return all;
