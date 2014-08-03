@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace iCat.Generate.ServiceTest
 {
@@ -21,13 +22,34 @@ namespace iCat.Generate.ServiceTest
         [Test]
         public void TestServiceColumns_Select()
         {
+            #region
             ColumnsData userdata = null;
 
             IColumnsService columnsservice = (IColumnsService)_springContext
                 .GetObject("columnsService");
-            //QueryCondition condition = new QueryCondition();
             userdata = columnsservice.GetColumns("TUser");
+            #endregion
         }
+        [Test]
+        public void TestRegex()
+        {
+            #region
+            string htmlmatch = @"/<(.)>.<\/\1>|<(.*) \/>/";
+            string intmatch = @"\w(\d*)\w";
+            Regex regex = new Regex(intmatch); //匹配两个字母间的数字串
+            GroupCollection groups = regex.Match("<table><br>abc1212121wef</table>").Groups;
+            Console.WriteLine(groups[0].Value);
+            /*
+            string input = "This is   text with   far  too   much   " +
+                     "whitespace.";
+            string pattern = "\\s+";
+            string replacement = " ";
+            string result = Regex.Replace(input, pattern, replacement);
 
+            Console.WriteLine("Original String: {0}", input);
+            Console.WriteLine("Replacement String: {0}", result);     
+            */
+            #endregion
+        }
     }
 }

@@ -8,6 +8,7 @@
   <object id="columnsService" type="iCat.Generate.Service.ColumnsService, iCat.Generate.Service">
     <property name="_ColumnsDao" ref="columnsDao"/>
   </object>
-  <object id="fileDaoService" type="iCat.Generate.Service.GenFileDaoService, iCat.Generate.Service">
-  </object>
+  <object id="fileDaoService" type="iCat.Generate.Service.GenFileDaoService, iCat.Generate.Service"/>
+  <object id="fileIDaoService" type="iCat.Generate.Service.GenFileIDaoService, iCat.Generate.Service"/>
+  <object id="fileModelService" type="iCat.Generate.Service.GenFileModelService, iCat.Generate.Service"/>
 </objects>

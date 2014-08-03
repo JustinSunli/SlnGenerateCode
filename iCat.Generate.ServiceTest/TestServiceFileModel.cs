@@ -10,7 +10,7 @@ using System.Text;
 
 namespace iCat.Generate.ServiceTest
 {
-    class TestServiceFileDao
+    class TestServiceFileModel
     {
         private IApplicationContext _springContext = null;
         [SetUp]
@@ -19,7 +19,7 @@ namespace iCat.Generate.ServiceTest
             _springContext = ContextRegistry.GetContext();
         }
         [Test]
-        public void TestServiceFileDao_GetCode()
+        public void TestServiceFileModel_GetCode()
         {
             #region
             IColumnsService columnsservice = (IColumnsService)_springContext
@@ -43,7 +43,7 @@ namespace iCat.Generate.ServiceTest
             };
 
             IFileCreatorService fileservice = (IFileCreatorService)_springContext
-                .GetObject("fileDaoService");
+                .GetObject("fileModelService");
             fileservice.GetCode(tablestructure, nspace, copyright);
             #endregion
         }
