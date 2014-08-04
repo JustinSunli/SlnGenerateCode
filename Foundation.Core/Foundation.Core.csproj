@@ -60,6 +60,7 @@
     <Compile Include="condition\DBConditions.cs" />
     <Compile Include="condition\EnumCondition.cs" />
     <Compile Include="condition\EnumSqlType.cs" />
+    <Compile Include="datacontroller\XType.cs" />
     <Compile Include="encrpt\Encrypt.cs" />
     <Compile Include="json\DataTableConverter.cs" />
     <Compile Include="json\JsonFilter.cs" />

@@ -14,5 +14,10 @@ namespace iCat.Generate.IService
             TableStructure table,
             Namespace nSpace,
             Copyright copyright);
+
+        void GenerateProject(DBStructure dbStructure,
+            Namespace nSpace,
+            Copyright copyright,
+            string parentDir);
     }
 }

@@ -39,9 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="data\TablesData.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="data\ColumnsData.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="entity\CodeIneration.cs" />
     <Compile Include="entity\Copyright.cs" />
     <Compile Include="entity\DBStructure.cs" />
     <Compile Include="entity\Namespace.cs" />

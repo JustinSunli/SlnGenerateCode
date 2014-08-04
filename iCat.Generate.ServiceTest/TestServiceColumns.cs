@@ -5,6 +5,7 @@ using Spring.Context;
 using Spring.Context.Support;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -50,6 +51,15 @@ namespace iCat.Generate.ServiceTest
             Console.WriteLine("Replacement String: {0}", result);     
             */
             #endregion
+        }
+
+        [Test]
+        public void TestPathCombine()
+        {
+            string codedir = Path.Combine("c:\\sina\\g", "good");
+            Console.WriteLine(codedir);
+            if (!Directory.Exists(codedir))
+                Directory.CreateDirectory(codedir);
         }
     }
 }

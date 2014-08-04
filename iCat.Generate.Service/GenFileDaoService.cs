@@ -21,9 +21,9 @@ namespace {2}
         {{
             base.Save({4}Data);
         }}
-        public int GetMaxId({3}Data {4}Data)
+        public int GetMaxId()
         {{
-            return base.GetMaxId({4}Data);
+            return base.GetMaxId<{3}Data>();
         }}
         public {3}Data SelectSingleT(
             QueryCondition condition)
@@ -67,6 +67,12 @@ namespace {2}
         }
 
         public void Generate()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void GenerateProject(DBStructure dbStructure, Namespace nSpace, Copyright copyright, string parentDir)
         {
             throw new NotImplementedException();
         }

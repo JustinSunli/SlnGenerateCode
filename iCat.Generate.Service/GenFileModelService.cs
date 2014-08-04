@@ -10,6 +10,7 @@ namespace iCat.Generate.Service
 {
     public class GenFileModelService : GenFileServiceBase, IFileCreatorService
     {
+        #region
         private const string _fileTemplate = @"
 {0}
 {1}
@@ -19,11 +20,11 @@ namespace {2}
 {{
     public class Entity{3} : IEntity
     {{
-        {4}
+{4}
 
         public void Get(DataRow dr)
         {{
-            {5}
+{5}
         }}
     }}
 }}";
@@ -58,7 +59,7 @@ namespace {2}
             return base.StrcatUsing(usings);
             #endregion
         }
-        private List<StrIteration> _strIterations = null;
+        private List<CodeIneration> _strIterations = null;
 
         /// <summary>
         /// 
@@ -68,33 +69,49 @@ namespace {2}
             TableStructure table)
         {
             #region
-            _strIterations = new List<StrIteration>();
-            _strIterations.Add(new StrIteration()
+            _strIterations = new List<CodeIneration>();
+            _strIterations.Add(new CodeIneration()
             {
-                _Template = "this.{0} = dr[{1}Data.{0}].ToString();"
+                _Template = "\t\tthis.{0} = dr[{1}Data.{0}].ToString();",
+                _IterType = EnumStrIteration.EntityAssigns
             });
-            _strIterations.Add(new StrIteration()
+            _strIterations.Add(new CodeIneration()
             {
-                _Template = @"/// <summary>
-        /// {0}。
-        /// </summary>
-        public string {1} {{ get; set; }}"
+                _Template = "\t/// <summary>\r\n" +
+                            "\t/// {0}。\r\n" +
+                            "\t/// </summary>\r\n" +
+                            "\tpublic string {1} {{ get; set; }}",
+                _IterType = EnumStrIteration.EntityFields
             });
 
-            DataRowCollection drs = table._Columns.Tables[0].Rows;
-            for (int i = 0; i < drs.Count; i++)
+            base._dlGetIterParams = new DLGetIterParams(getIterParams);
+            base.AppendCodeInerationsByTable(table, _strIterations);
+            #endregion
+        }
+        private object[] getIterParams(
+            CodeIneration iter,
+            int colsRowIndex,
+            TableStructure table)
+        {
+            #region
+            IList<object> iterparams = new List<object>();
+            DataRow dr = table._Columns.Tables[0].Rows[colsRowIndex];
+            switch (iter._IterType)
             {
-                foreach(StrIteration iter in _strIterations)
-                {
-                    string temp = string.Format(iter._Template,
-                    drs[0][ColumnsData.name], table._Name);
-
-                    if (i == drs.Count - 1)
-                        iter._Returns.Append(temp);
-                    else
-                        iter._Returns.AppendLine(temp);
-                }
+                case EnumStrIteration.EntityAssigns:
+                    {
+                        iterparams.Add(dr[ColumnsData.name]);
+                        iterparams.Add(table._Name);
+                        break;
+                    }
+                case EnumStrIteration.EntityFields:
+                    {
+                        iterparams.Add(dr[ColumnsData.value]);
+                        iterparams.Add(dr[ColumnsData.name]);
+                        break;
+                    }
             }
+            return iterparams.ToArray<object>();
             #endregion
         }
         /// <summary>
@@ -124,29 +141,12 @@ namespace {2}
         {
             throw new NotImplementedException();
         }
-    }
-    public class StrIteration
-    {
-        private string _template;
+        #endregion
 
-        public string _Template
+
+        public void GenerateProject(DBStructure dbStructure, Namespace nSpace, Copyright copyright, string parentDir)
         {
-            get { return _template; }
-            set { _template = value; }
-        }
-
-        private StringBuilder _returns;
-
-        public StringBuilder _Returns
-        {
-            get { return _returns; }
-            set { _returns = value; }
-        }
-
-        public StrIteration()
-        {
-            if (_returns == null)
-                _returns = new StringBuilder();
+            throw new NotImplementedException();
         }
     }
 }

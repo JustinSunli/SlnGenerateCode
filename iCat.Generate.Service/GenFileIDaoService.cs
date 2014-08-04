@@ -60,5 +60,11 @@ namespace {2}
         {
             throw new NotImplementedException();
         }
+
+
+        public void GenerateProject(DBStructure dbStructure, Namespace nSpace, Copyright copyright, string parentDir)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

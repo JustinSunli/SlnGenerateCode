@@ -8,7 +8,7 @@ using System.Text;
 
 namespace iCat.Generate.Service
 {
-    class ColumnsService : IColumnsService
+    public class ColumnsService : IColumnsService
     {
         public IColumnsDao _ColumnsDao { get; set; }
         public ColumnsData GetColumns(

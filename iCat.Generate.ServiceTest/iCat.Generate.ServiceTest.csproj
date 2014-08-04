@@ -48,6 +48,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestServiceColumns.cs" />
+    <Compile Include="TestServiceFileIervice.cs" />
+    <Compile Include="TestServiceSln.cs" />
+    <Compile Include="TestServiceFileService.cs" />
+    <Compile Include="TestServiceFileModelData.cs" />
     <Compile Include="TestServiceFileModel.cs" />
     <Compile Include="TestServiceFileIDao.cs" />
     <Compile Include="TestServiceFileDao.cs" />

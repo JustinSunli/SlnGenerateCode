@@ -40,10 +40,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColumnsService.cs" />
+    <Compile Include="GenFileIServiceService.cs" />
+    <Compile Include="GenFileModelDataService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GenFileModelService.cs" />
     <Compile Include="GenFileIDaoService.cs" />
     <Compile Include="GenFileDaoService.cs" />
     <Compile Include="GenFileServiceBase.cs" />
+    <Compile Include="GenFileServiceService.cs" />
+    <Compile Include="GenSlnService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

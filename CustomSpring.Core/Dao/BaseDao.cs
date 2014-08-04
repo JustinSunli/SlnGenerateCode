@@ -41,12 +41,15 @@ namespace CustomSpring.Core.Dao
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ds"></param>
+        /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public int GetMaxId(DataSet ds)
+        public int GetMaxId<T>()
         {
             #region
-            DataColumn[] cols = SQLCreator.GetPrimaryKey(ds);
+            Type t = typeof(T);
+            DataSet tuser = (DataSet)Activator.CreateInstance(t);
+
+            DataColumn[] cols = SQLCreator.GetPrimaryKey(tuser);
             string keyfieldname = "";
             foreach (DataColumn col in cols)
             {
@@ -64,7 +67,7 @@ namespace CustomSpring.Core.Dao
             string selectsql = string.Format(
                 "select max([{0}]) from [{1}]",
                 keyfieldname,
-                ds.Tables[0].TableName);
+                tuser.Tables[0].TableName);
 
             object maxid = this.AdoTemplate
                 .ExecuteScalar(CommandType.Text, selectsql);

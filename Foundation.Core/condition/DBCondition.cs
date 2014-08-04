@@ -86,7 +86,6 @@ namespace Foundation.Core
         {
             #region
             string condition = "";
-            string convertsqlvalue = "";
             string relation = (conditionsRelation == EnumConditionsRelation.And) ? "and" : "or";
             switch (conditionType)
             {

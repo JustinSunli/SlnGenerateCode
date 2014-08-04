@@ -15,9 +15,17 @@ namespace iCat.Generate.Model
             set { 
                 _name = value;
                 _paramNamePrefix = getParamPrefix();
+                _nameLower = _name.ToLower();
+
             }
         }
+        private string _nameLower;
 
+        public string _NameLower
+        {
+            get { return _nameLower; }
+        }
+        
         private string _paramNamePrefix;
 
         public string _ParamNamePrefix

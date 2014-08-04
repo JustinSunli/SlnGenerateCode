@@ -10,7 +10,7 @@ using System.Text;
 
 namespace iCat.Generate.ServiceTest
 {
-    class TestServiceFileModel
+    class TestServiceFileIervice
     {
         private IApplicationContext _springContext = null;
         [SetUp]
@@ -19,7 +19,7 @@ namespace iCat.Generate.ServiceTest
             _springContext = ContextRegistry.GetContext();
         }
         [Test]
-        public void TestServiceFileModel_GetCode()
+        public void TestServiceFileIService_GetCode()
         {
             #region
             IColumnsService columnsservice = (IColumnsService)_springContext
@@ -43,7 +43,7 @@ namespace iCat.Generate.ServiceTest
             };
 
             IFileCreatorService fileservice = (IFileCreatorService)_springContext
-                .GetObject("fileModelService");
+                .GetObject("fileIServiceService");
             fileservice.GetCode(tablestructure, nspace, copyright);
             #endregion
         }

@@ -5,10 +5,21 @@
   <object id="columnsDao" type="iCat.Generate.Dao.ColumnsDao, iCat.Generate.Dao">
     <property name="AdoTemplate" ref="adoTemplate"/>
   </object>
+  <object id="tableDao" type="iCat.Generate.Dao.TableDao, iCat.Generate.Dao">
+    <property name="AdoTemplate" ref="adoTemplate"/>
+  </object>
   <object id="columnsService" type="iCat.Generate.Service.ColumnsService, iCat.Generate.Service">
     <property name="_ColumnsDao" ref="columnsDao"/>
   </object>
+  
   <object id="fileDaoService" type="iCat.Generate.Service.GenFileDaoService, iCat.Generate.Service"/>
   <object id="fileIDaoService" type="iCat.Generate.Service.GenFileIDaoService, iCat.Generate.Service"/>
   <object id="fileModelService" type="iCat.Generate.Service.GenFileModelService, iCat.Generate.Service"/>
+  <object id="fileModelDataService" type="iCat.Generate.Service.GenFileModelDataService, iCat.Generate.Service"/>
+  <object id="fileServiceService" type="iCat.Generate.Service.GenFileServiceService, iCat.Generate.Service"/>
+  <object id="fileIServiceService" type="iCat.Generate.Service.GenFileIServiceService, iCat.Generate.Service"/>
+  <object id="slnGenService" type="iCat.Generate.Service.GenSlnService, iCat.Generate.Service">
+    <property name="_ColumnsDao" ref="columnsDao"/>
+    <property name="_TablesDao" ref="tableDao"/>
+  </object>
 </objects>
