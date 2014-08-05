@@ -40,7 +40,7 @@ namespace iCat.Generate.ServiceTest
 
             GenSlnService slnservice = (GenSlnService)_springContext
                 .GetObject("slnGenService");
-
+            
             slnservice._NameSpace = nspace;
             slnservice._Copyright = copyright;
 

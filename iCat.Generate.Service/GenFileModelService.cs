@@ -3,6 +3,7 @@ using iCat.Generate.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -30,22 +31,19 @@ namespace {2}
 }}";
         //4为首字母小写的表名，3为原始表名，
         public string GetCode(
-            TableStructure table,
-            Namespace nSpace,
-            Copyright copyright)
+            TableStructure table)
         {
             #region
             string all = "";
             this.createIterationStrings(table);
             List<string> args = new List<string>();
-            args.Add(copyright.ToString());
-            args.Add(getUsing(nSpace));
-            args.Add(nSpace._Model);
+            args.Add(base._Copyright);
+            args.Add(base._Usings);
+            args.Add(base._Project._Name);
             args.Add(table._Name);
             args.Add(getFields());
             args.Add(getAssign());
             all = string.Format(_fileTemplate, args.ToArray<string>());
-            Console.WriteLine(all);
             return all;
             #endregion
         }
@@ -56,6 +54,7 @@ namespace {2}
             #region
             IList<string> usings = new List<string>();
             usings.Add(nSpace._FoundationCore);
+            base._Project._ReferenceNSpace = usings;
             return base.StrcatUsing(usings);
             #endregion
         }
@@ -144,9 +143,54 @@ namespace {2}
         #endregion
 
 
-        public void GenerateProject(DBStructure dbStructure, Namespace nSpace, Copyright copyright, string parentDir)
+        public Project GenerateProject(
+            DBStructure dbStructure, 
+            Namespace nSpace, 
+            Copyright copyright, 
+            string parentDir)
         {
-            throw new NotImplementedException();
+            #region
+            if (base._Project == null)
+                base._Project = new Project()
+                {
+                    _Guid = Guid.NewGuid(),
+                    _Name = nSpace._Model
+                };
+            else
+                this._Project._ReferenceNSpace.Clear();
+
+            base._Usings = getUsing(nSpace);
+            base._Copyright = copyright.ToString();
+            
+            string codedir = Path.Combine(
+                parentDir, base._Project._Name, "entity");
+
+            base.CheckDir(codedir);
+            base._FileNameFormat = "Entity{0}.cs";
+            foreach (TableStructure table in dbStructure._Tables)
+            {
+                string filename = string.Format(_FileNameFormat, table._Name);
+                base.SaveFile(codedir, filename, this.GetCode(table));
+            }
+
+            _modelDataService = new GenFileModelDataService();
+            _modelDataService.GenerateProject(dbStructure, nSpace, copyright, parentDir);
+
+            return base._Project;
+            #endregion
+        }
+
+        private GenFileModelDataService _modelDataService = null;
+        public void GenerateCsproj(
+            DBStructure dbStructure, 
+            List<Project> allProjects, 
+            string parentDir)
+        {
+            base._FileNameFormat = "entity\\{0}Data.cs";
+            base.SaveCsproj(dbStructure, allProjects, parentDir);
+            _modelDataService.GenerateCsproj(dbStructure, allProjects, parentDir);
+            base.SaveAssembly(parentDir);
+
         }
     }
 }

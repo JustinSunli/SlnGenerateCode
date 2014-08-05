@@ -42,7 +42,9 @@ namespace iCat.Generate.Model
         EntityAssigns,
         DataColumnsAdd,
         DataAssigns,
-        DataFields
+        DataFields,
+        SlnProjects,
+        SlnCompiles
     }
 
 }

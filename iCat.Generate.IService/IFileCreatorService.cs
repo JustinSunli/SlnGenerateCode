@@ -11,13 +11,16 @@ namespace iCat.Generate.IService
         void Generate();
 
         string GetCode(
-            TableStructure table,
-            Namespace nSpace,
-            Copyright copyright);
+            TableStructure table);
 
-        void GenerateProject(DBStructure dbStructure,
+        Project GenerateProject(DBStructure dbStructure,
             Namespace nSpace,
             Copyright copyright,
+            string parentDir);
+
+        void GenerateCsproj(
+            DBStructure dbStructure,
+            List<Project> allProjects,
             string parentDir);
     }
 }

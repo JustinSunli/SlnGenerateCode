@@ -44,7 +44,7 @@ namespace iCat.Generate.ServiceTest
 
             IFileCreatorService fileservice = (IFileCreatorService)_springContext
                 .GetObject("fileModelDataService");
-            fileservice.GetCode(tablestructure, nspace, copyright);
+            //fileservice.GetCode(tablestructure, nspace, copyright);
             #endregion
         }
 

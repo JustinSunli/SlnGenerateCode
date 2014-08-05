@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<TConnection>
+  <Connection>
+    <rid>1</rid>
+    <provider>SqlServer-2.0</provider>
+    <discribe>龙浩测试库</discribe>
+    <connectionString>Data Source=.;Initial Catalog=DevIMDB;Persist Security Info=True;User ID=sa;Password=longhope</connectionString>
+  </Connection>
+</TConnection>

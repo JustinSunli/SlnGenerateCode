@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Common.Logging.dll" />
+    <Content Include="DevExpress.OfficeSkins.v10.2.dll" />
     <Content Include="nunit.framework.dll" />
     <Content Include="Spring.Aop.dll" />
     <Content Include="Spring.Core.dll" />
