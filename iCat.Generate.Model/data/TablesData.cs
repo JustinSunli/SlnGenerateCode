@@ -17,7 +17,7 @@ namespace iCat.Generate.Model
         /// 表名。
         /// </summary>
         public const string sysobjects = "sysobjects";
-        
+
         private void BuildData()
         {
             DataTable dt = new DataTable(sysobjects);
