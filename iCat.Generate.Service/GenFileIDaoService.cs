@@ -47,7 +47,7 @@ namespace {2}
         {
             #region
             IList<string> usings = new List<string>();
-            usings.Add(nSpace._FoundationCore);
+            usings.Add(nSpace._FoundationCore.ToString());
             usings.Add(nSpace._Model);
             this._Project._ReferenceNSpace = usings;
             return base.StrcatUsing(usings);

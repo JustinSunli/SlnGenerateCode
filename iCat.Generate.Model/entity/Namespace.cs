@@ -20,6 +20,8 @@ namespace iCat.Generate.Model
             = "{0}.Model";
 
         public const string KeyNameProjectName = "ProjectName";
+        public const string KeyNameFoundation = "FoundationAssemblyName";
+        public const string KeyNameSpringCoreName = "SpringCoreName";
         private object _prefix = "iCat.Assembly";
 
         public object _Prefix
@@ -35,17 +37,17 @@ namespace iCat.Generate.Model
             }
         }
 
-        private string _foundationCore;
+        private object _foundationCore = "Foundation.Core";
 
-        public string _FoundationCore
+        public object _FoundationCore
         {
             get { return _foundationCore; }
             set { _foundationCore = value; }
         }
 
-        private string _customSpring;
+        private object _customSpring = "CustomSpring.Core";
 
-        public string _CustomSpring
+        public object _CustomSpring
         {
             get { return _customSpring; }
             set { _customSpring = value; }
@@ -90,6 +92,8 @@ namespace iCat.Generate.Model
             Namespace nspace = new Namespace();
 
             Config.Get(KeyNameProjectName, ref nspace._prefix);
+            Config.Get(KeyNameFoundation, ref nspace._foundationCore);
+            Config.Get(KeyNameSpringCoreName, ref nspace._customSpring);
             nspace._Prefix = nspace._prefix;
             return nspace;
 

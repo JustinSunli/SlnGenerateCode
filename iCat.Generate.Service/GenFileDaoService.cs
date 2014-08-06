@@ -56,8 +56,8 @@ namespace {2}
         {
             #region
             IList<string> usings = new List<string>();
-            usings.Add(nSpace._CustomSpring);
-            usings.Add(nSpace._FoundationCore);
+            usings.Add(nSpace._CustomSpring.ToString());
+            usings.Add(nSpace._FoundationCore.ToString());
             usings.Add(nSpace._IDao);
             usings.Add(nSpace._Model);
 

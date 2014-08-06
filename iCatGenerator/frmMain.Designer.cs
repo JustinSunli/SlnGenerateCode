@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.lbcDBConnectStatus = new DevExpress.XtraEditors.LabelControl();
             this.lueditDBList = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.sbDBConifg = new DevExpress.XtraEditors.SimpleButton();
@@ -46,7 +49,7 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.ckDBTableList = new DevExpress.XtraEditors.CheckedListBoxControl();
-            this.lbcDBConnectStatus = new DevExpress.XtraEditors.LabelControl();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueditDBList.Properties)).BeginInit();
@@ -61,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ckDBTableList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -74,9 +78,18 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(720, 115);
+            this.groupControl1.Size = new System.Drawing.Size(766, 132);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "数据库";
+            // 
+            // lbcDBConnectStatus
+            // 
+            this.lbcDBConnectStatus.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.lbcDBConnectStatus.Location = new System.Drawing.Point(589, 92);
+            this.lbcDBConnectStatus.Name = "lbcDBConnectStatus";
+            this.lbcDBConnectStatus.Size = new System.Drawing.Size(117, 14);
+            this.lbcDBConnectStatus.TabIndex = 7;
+            this.lbcDBConnectStatus.Text = "数据库状态：未连接";
             // 
             // lueditDBList
             // 
@@ -84,8 +97,8 @@
             this.lueditDBList.Name = "lueditDBList";
             this.lueditDBList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueditDBList.Size = new System.Drawing.Size(412, 21);
-            this.lueditDBList.TabIndex = 6;
+            this.lueditDBList.Size = new System.Drawing.Size(376, 21);
+            this.lueditDBList.TabIndex = 4;
             // 
             // labelControl6
             // 
@@ -97,9 +110,11 @@
             // 
             // sbDBConifg
             // 
-            this.sbDBConifg.Location = new System.Drawing.Point(566, 34);
+            this.sbDBConifg.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sbDBConifg.Appearance.Options.UseFont = true;
+            this.sbDBConifg.Location = new System.Drawing.Point(539, 36);
             this.sbDBConifg.Name = "sbDBConifg";
-            this.sbDBConifg.Size = new System.Drawing.Size(140, 22);
+            this.sbDBConifg.Size = new System.Drawing.Size(212, 40);
             this.sbDBConifg.TabIndex = 2;
             this.sbDBConifg.Text = "配置数据库";
             // 
@@ -116,8 +131,8 @@
             this.teConnectString.Enabled = false;
             this.teConnectString.Location = new System.Drawing.Point(148, 62);
             this.teConnectString.Name = "teConnectString";
-            this.teConnectString.Size = new System.Drawing.Size(412, 38);
-            this.teConnectString.TabIndex = 4;
+            this.teConnectString.Size = new System.Drawing.Size(376, 64);
+            this.teConnectString.TabIndex = 5;
             // 
             // groupControl3
             // 
@@ -130,10 +145,10 @@
             this.groupControl3.Controls.Add(this.labelControl3);
             this.groupControl3.Controls.Add(this.teSlnName);
             this.groupControl3.Controls.Add(this.labelControl2);
-            this.groupControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupControl3.Location = new System.Drawing.Point(0, 115);
+            this.groupControl3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupControl3.Location = new System.Drawing.Point(525, 132);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(241, 311);
+            this.groupControl3.Size = new System.Drawing.Size(241, 294);
             this.groupControl3.TabIndex = 2;
             this.groupControl3.Text = "代码配置";
             // 
@@ -150,14 +165,16 @@
             this.deCreateDate.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.deCreateDate.Size = new System.Drawing.Size(212, 21);
-            this.deCreateDate.TabIndex = 11;
+            this.deCreateDate.TabIndex = 8;
             // 
             // sbGenerateCode
             // 
+            this.sbGenerateCode.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sbGenerateCode.Appearance.Options.UseFont = true;
             this.sbGenerateCode.Location = new System.Drawing.Point(15, 240);
             this.sbGenerateCode.Name = "sbGenerateCode";
-            this.sbGenerateCode.Size = new System.Drawing.Size(212, 22);
-            this.sbGenerateCode.TabIndex = 10;
+            this.sbGenerateCode.Size = new System.Drawing.Size(212, 40);
+            this.sbGenerateCode.TabIndex = 11;
             this.sbGenerateCode.Text = "代码生成";
             this.sbGenerateCode.Click += new System.EventHandler(this.sbGenerateCode_Click);
             // 
@@ -189,7 +206,7 @@
             this.teCreator.Location = new System.Drawing.Point(14, 106);
             this.teCreator.Name = "teCreator";
             this.teCreator.Size = new System.Drawing.Size(212, 21);
-            this.teCreator.TabIndex = 5;
+            this.teCreator.TabIndex = 7;
             // 
             // labelControl3
             // 
@@ -204,7 +221,7 @@
             this.teSlnName.Location = new System.Drawing.Point(15, 59);
             this.teSlnName.Name = "teSlnName";
             this.teSlnName.Size = new System.Drawing.Size(212, 21);
-            this.teSlnName.TabIndex = 3;
+            this.teSlnName.TabIndex = 6;
             // 
             // labelControl2
             // 
@@ -218,9 +235,9 @@
             // 
             this.groupControl4.Controls.Add(this.ckDBTableList);
             this.groupControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl4.Location = new System.Drawing.Point(241, 115);
+            this.groupControl4.Location = new System.Drawing.Point(0, 132);
             this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(479, 311);
+            this.groupControl4.Size = new System.Drawing.Size(525, 294);
             this.groupControl4.TabIndex = 3;
             this.groupControl4.Text = "数据表选择";
             // 
@@ -231,27 +248,19 @@
             this.ckDBTableList.Location = new System.Drawing.Point(2, 23);
             this.ckDBTableList.MultiColumn = true;
             this.ckDBTableList.Name = "ckDBTableList";
-            this.ckDBTableList.Size = new System.Drawing.Size(475, 286);
-            this.ckDBTableList.TabIndex = 0;
-            // 
-            // lbcDBConnectStatus
-            // 
-            this.lbcDBConnectStatus.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.lbcDBConnectStatus.Location = new System.Drawing.Point(576, 74);
-            this.lbcDBConnectStatus.Name = "lbcDBConnectStatus";
-            this.lbcDBConnectStatus.Size = new System.Drawing.Size(117, 14);
-            this.lbcDBConnectStatus.TabIndex = 7;
-            this.lbcDBConnectStatus.Text = "数据库状态：未连接";
+            this.ckDBTableList.Size = new System.Drawing.Size(521, 269);
+            this.ckDBTableList.TabIndex = 10;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 426);
+            this.ClientSize = new System.Drawing.Size(766, 426);
             this.Controls.Add(this.groupControl4);
             this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.groupControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -273,6 +282,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ckDBTableList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -298,6 +308,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LookUpEdit lueditDBList;
         private DevExpress.XtraEditors.LabelControl lbcDBConnectStatus;
+        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
     }
 }
 

@@ -3,6 +3,7 @@ using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.DXErrorProvider;
 using iCat.Generate.IService;
 using iCat.Generate.Model;
 using System;
@@ -83,9 +84,25 @@ namespace iCatGenerator
             _ConnectionsData = dbcombocontroller.GetConnections("Connection.xml");
             dbcombocontroller.BindDBList(lueditDBList_EditValueChanged);
             this.bindCodeConfig();
+            this.initValidateRulers();
             #endregion
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void initValidateRulers()
+        {
+            #region
+            ConditionValidationRule notempty = new ConditionValidationRule();
+            notempty.ConditionOperator = ConditionOperator.IsNotBlank;
+            notempty.ErrorText = "该项不能为空！";
 
+            dxValidationProvider1.SetValidationRule(this.teSlnName, notempty);
+            dxValidationProvider1.SetValidationRule(this.teCreator, notempty);
+            dxValidationProvider1.SetValidationRule(this.teCopyright, notempty);
+            dxValidationProvider1.SetValidationRule(this.lueditDBList, notempty);
+            #endregion
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -174,7 +191,8 @@ namespace iCatGenerator
         private void sbGenerateCode_Click(
             object sender, EventArgs e)
         {
-            _slnService.GenerateAll(_copyright, _nSpace, _dbStructure, "c:\\work");
+            if(dxValidationProvider1.Validate())
+                _slnService.GenerateAll(_copyright, _nSpace, _dbStructure, "c:\\work");
         }
     }
 }
