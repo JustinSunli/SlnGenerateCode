@@ -23,6 +23,15 @@ namespace iCat.Generate.Model
             set { _tables = value; }
         }
 
+        private TablesData _tablesData;
+
+        public TablesData _TablesData
+        {
+            get { return _tablesData; }
+            set { _tablesData = value; }
+        }
+        
+
         public DBStructure()
         {
             if (_tables == null)

@@ -1,8 +1,9 @@
-﻿using DevExpress.Data;
+﻿using CustomSpring.Core;
 using DevExpress.LookAndFeel;
 using DevExpress.Skins;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Controls;
+using iCat.Generate.IService;
 using iCat.Generate.Model;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,13 @@ namespace iCatGenerator
 {
     public partial class frmMain : XtraForm
     {
+        public static ConnectionsData _ConnectionsData { get; set; }
+        private IDBService _dbService;
+        private ISlnCreatorService _slnService;
+        private delegate ConnectAction DLTestDBConnect();
+        private DBStructure _dbStructure;
+        private Namespace _nSpace;
+        public static Copyright _copyright { get; set; }
         public frmMain()
         {
             InitializeComponent();
@@ -26,31 +34,58 @@ namespace iCatGenerator
                 SkinManager.Default.Skins[5].SkinName
                 );
         }
-        public ConnectionsData _ConnectionsData { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="xmlFilename"></param>
-        private void bindDBList(
-            string xmlFilename)
+        private void bindCodeConfig()
         {
             #region
-            _ConnectionsData = new ConnectionsData();
-            string xmlfilepath = Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
-                xmlFilename);
-
-            _ConnectionsData.ReadXml(xmlfilepath, XmlReadMode.Auto);
-
-            this.lueditDBList.Properties.DataSource = _ConnectionsData.Tables[0].DefaultView;
-            this.lueditDBList.Properties.DisplayMember = ConnectionsData.discribe;
-            this.lueditDBList.Properties.ValueMember = ConnectionsData.rid;
-
-            this.lueditDBList.EditValueChanged += lueditDBList_EditValueChanged;
-
-            this.bindLookupGrid();
+            this.teCreator.Text = _copyright._Creater.ToString();
+            this.teCopyright.Text = _copyright._Company.ToString();
+            this.deCreateDate.Properties.VistaDisplayMode = DefaultBoolean.True;
+            this.deCreateDate.Properties.VistaEditTime = DefaultBoolean.True;
+            this.deCreateDate.Text = Convert.ToDateTime(_copyright._GenerateTime).ToString("yyyy-MM-dd HH:mm:ss");
+            this.teSlnName.Text = _nSpace._Prefix.ToString();
             #endregion
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connection"></param>
+        private void bindTables(
+            Connection connection)
+        {
+            #region
+            _dbStructure = _dbService.GetDBStructure(connection);
+            this.ckDBTableList.DataSource = _dbStructure._TablesData.Tables[0].DefaultView;
+            this.ckDBTableList.DisplayMember = TablesData.name;
+            this.ckDBTableList.ValueMember = TablesData.name;
+            #endregion
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmMain_Load(
+            object sender, EventArgs e)
+        {
+            #region
+            SpringManager.Init();
+            _dbService = (IDBService)SpringManager.GetObject("dbService");
+            _slnService = (ISlnCreatorService)SpringManager.GetObject("slnGenService");
+            ConnectActionCollection.Init();
+            _copyright = Copyright.GetParameters();
+            _nSpace = Namespace.GetParameters();
+
+            DBComboBoxController dbcombocontroller = 
+                new DBComboBoxController(this.lueditDBList);
+            _ConnectionsData = dbcombocontroller.GetConnections("Connection.xml");
+            dbcombocontroller.BindDBList(lueditDBList_EditValueChanged);
+            this.bindCodeConfig();
+            #endregion
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -64,43 +99,82 @@ namespace iCatGenerator
                 .Rows.Find(this.lueditDBList.EditValue);
 
             if (dr != null)
-                this.teConnectString.Text = 
+            { 
+                this.teConnectString.Text =
                     dr[ConnectionsData.connectionString].ToString();
+
+                DLTestDBConnect dltestdb = new DLTestDBConnect(testDBConnect);
+                AsyncCallback callback = new AsyncCallback(testDBCallback);
+                dltestdb.BeginInvoke(callback, dltestdb);
+            }
             #endregion
         }
         /// <summary>
         /// 
         /// </summary>
-        private void bindLookupGrid()
+        /// <returns></returns>
+        private ConnectAction testDBConnect()
         {
             #region
-            LookUpColumnInfoCollection columns = 
-                this.lueditDBList.Properties.Columns;
+            Connection connection = _ConnectionsData
+                        .GetEntity<Connection>(new object[1] 
+                        { 
+                            this.lueditDBList.EditValue 
+                        });
+            ConnectAction action = ConnectActionCollection.AddNew();
+            if(this.InvokeRequired)
+            { 
+                this.Invoke(new MethodInvoker(() =>{
+                    this.lbcDBConnectStatus.Text = "数据库状态：连接中…";
+                    this.lbcDBConnectStatus.ForeColor = Color.Black;
+                }));
+            }
+            action._Connection = connection;
+            action._IsSuccess = _dbService.IsSuccessConnectDB(connection);
 
-            LookUpColumnInfo col = new LookUpColumnInfo(
-                    ConnectionsData.discribe, 
-                    "数据库描述", 30);
+            return action;
+            #endregion
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ia"></param>
+        private void testDBCallback(
+            IAsyncResult ia)
+        {
+            #region
+            DLTestDBConnect obj = (DLTestDBConnect)ia.AsyncState;
+            ConnectAction action = obj.EndInvoke(ia);
+            if (this.InvokeRequired && action._IsConnecting)
+            {
+                this.Invoke(new MethodInvoker(() =>
+                {
+                    string msg = "";
+                    if (action._IsSuccess)
+                    {
+                        this.lbcDBConnectStatus.ForeColor = Color.LimeGreen;
+                        msg = "数据库状态：已连接";
+                        this.bindTables(action._Connection);
+                    }
+                    else
+                    {
+                        this.lbcDBConnectStatus.ForeColor = Color.Red;
+                        msg = "数据库状态：连接失败";
+                        if (_dbStructure != null)
+                            _dbStructure._TablesData.Tables[0].Rows.Clear();
+                    }
+                    this.lbcDBConnectStatus.Text = msg;
+                }));
 
-            col.SortOrder = ColumnSortOrder.Ascending;
-            columns.Add(col);
-
-            col = new LookUpColumnInfo(
-                    ConnectionsData.connectionString,
-                    "连接字符串", 70);
-
-            col.SortOrder = ColumnSortOrder.Ascending;
-            columns.Add(col);
+            }
+            ConnectActionCollection.Remove(action);
             #endregion
         }
 
-        private void bindCodeConfig()
-        { 
-            
-        }
-
-        private void frmMain_Load(object sender, EventArgs e)
+        private void sbGenerateCode_Click(
+            object sender, EventArgs e)
         {
-            this.bindDBList("Connection.xml");
+            _slnService.GenerateAll(_copyright, _nSpace, _dbStructure, "c:\\work");
         }
     }
 }

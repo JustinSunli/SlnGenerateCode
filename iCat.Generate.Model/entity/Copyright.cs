@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foundation.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,24 +21,35 @@ namespace iCat.Generate.Model
 ***         本软件进行代码生成时未经
 ***         本人同意，为侵权行为。
 *****************************************/";
+        public const string KeyNameCreator = "Creator";
+        public const string KeyNameCompany = "Company";
+        public const string KeyNameVersion = "SoftwareVersion";
+        public const string KeyNameCreatTime = "CreatTime";
 
-        private string _creater;
+        private object _creater = "lifengyan";
 
-        public string _Creater
+        public object _Creater
         {
             get { return _creater; }
             set { _creater = value; }
         }
-        private string _company;
+        private object _company = "iCat Studio";
 
-        public string _Company
+        public object _Company
         {
             get { return _company; }
             set { _company = value; }
         }
-        private string _version;
+        private object _version = "V2.0";
+        private object _generateTime = DateTime.Now;
 
-        public string _Version
+        public object _GenerateTime
+        {
+            get { return _generateTime; }
+            set { _generateTime = value; }
+        }
+        
+        public object _Version
         {
             get { return _version; }
             set { _version = value; }
@@ -49,10 +61,22 @@ namespace iCat.Generate.Model
             object[] args = new object[4];
             args[0] = _version;
             args[1] = _creater;
-            args[2] = DateTime.Now;
+            args[2] = _generateTime;
             args[3] = _company;
             return string.Format(_template, args);
             #endregion
+        }
+
+        public static Copyright GetParameters()
+        {
+            Copyright copyright = new Copyright();
+
+            Config.Get(KeyNameCreator, ref copyright._creater);
+            Config.Get(KeyNameCompany, ref copyright._company);
+            Config.Get(KeyNameVersion, ref copyright._version);
+            Config.Get(KeyNameCreatTime, ref copyright._generateTime);
+
+            return copyright;
         }
     }
 }

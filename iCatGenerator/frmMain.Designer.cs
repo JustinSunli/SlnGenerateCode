@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.lueditDBList = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.sbDBConifg = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.teConnectString = new DevExpress.XtraEditors.MemoEdit();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.teCreateTime = new DevExpress.XtraEditors.TimeEdit();
             this.deCreateDate = new DevExpress.XtraEditors.DateEdit();
             this.sbGenerateCode = new DevExpress.XtraEditors.SimpleButton();
             this.teCopyright = new DevExpress.XtraEditors.TextEdit();
@@ -45,14 +46,13 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.ckDBTableList = new DevExpress.XtraEditors.CheckedListBoxControl();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.lueditDBList = new DevExpress.XtraEditors.LookUpEdit();
+            this.lbcDBConnectStatus = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueditDBList.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teConnectString.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.teCreateTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deCreateDate.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deCreateDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teCopyright.Properties)).BeginInit();
@@ -61,11 +61,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ckDBTableList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueditDBList.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.lbcDBConnectStatus);
             this.groupControl1.Controls.Add(this.lueditDBList);
             this.groupControl1.Controls.Add(this.labelControl6);
             this.groupControl1.Controls.Add(this.sbDBConifg);
@@ -77,6 +77,23 @@
             this.groupControl1.Size = new System.Drawing.Size(720, 115);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "数据库";
+            // 
+            // lueditDBList
+            // 
+            this.lueditDBList.Location = new System.Drawing.Point(148, 35);
+            this.lueditDBList.Name = "lueditDBList";
+            this.lueditDBList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueditDBList.Size = new System.Drawing.Size(412, 21);
+            this.lueditDBList.TabIndex = 6;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(14, 65);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(108, 14);
+            this.labelControl6.TabIndex = 5;
+            this.labelControl6.Text = "数据库连接字符串：";
             // 
             // sbDBConifg
             // 
@@ -99,12 +116,11 @@
             this.teConnectString.Enabled = false;
             this.teConnectString.Location = new System.Drawing.Point(148, 62);
             this.teConnectString.Name = "teConnectString";
-            this.teConnectString.Size = new System.Drawing.Size(558, 38);
+            this.teConnectString.Size = new System.Drawing.Size(412, 38);
             this.teConnectString.TabIndex = 4;
             // 
             // groupControl3
             // 
-            this.groupControl3.Controls.Add(this.teCreateTime);
             this.groupControl3.Controls.Add(this.deCreateDate);
             this.groupControl3.Controls.Add(this.sbGenerateCode);
             this.groupControl3.Controls.Add(this.teCopyright);
@@ -121,16 +137,6 @@
             this.groupControl3.TabIndex = 2;
             this.groupControl3.Text = "代码配置";
             // 
-            // teCreateTime
-            // 
-            this.teCreateTime.EditValue = new System.DateTime(2014, 8, 5, 0, 0, 0, 0);
-            this.teCreateTime.Location = new System.Drawing.Point(126, 153);
-            this.teCreateTime.Name = "teCreateTime";
-            this.teCreateTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.teCreateTime.Size = new System.Drawing.Size(100, 21);
-            this.teCreateTime.TabIndex = 12;
-            // 
             // deCreateDate
             // 
             this.deCreateDate.EditValue = null;
@@ -138,9 +144,12 @@
             this.deCreateDate.Name = "deCreateDate";
             this.deCreateDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deCreateDate.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.deCreateDate.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.deCreateDate.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
             this.deCreateDate.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.deCreateDate.Size = new System.Drawing.Size(108, 21);
+            this.deCreateDate.Size = new System.Drawing.Size(212, 21);
             this.deCreateDate.TabIndex = 11;
             // 
             // sbGenerateCode
@@ -150,6 +159,7 @@
             this.sbGenerateCode.Size = new System.Drawing.Size(212, 22);
             this.sbGenerateCode.TabIndex = 10;
             this.sbGenerateCode.Text = "代码生成";
+            this.sbGenerateCode.Click += new System.EventHandler(this.sbGenerateCode_Click);
             // 
             // teCopyright
             // 
@@ -217,27 +227,21 @@
             // ckDBTableList
             // 
             this.ckDBTableList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ckDBTableList.HorizontalScrollbar = true;
             this.ckDBTableList.Location = new System.Drawing.Point(2, 23);
+            this.ckDBTableList.MultiColumn = true;
             this.ckDBTableList.Name = "ckDBTableList";
             this.ckDBTableList.Size = new System.Drawing.Size(475, 286);
             this.ckDBTableList.TabIndex = 0;
             // 
-            // labelControl6
+            // lbcDBConnectStatus
             // 
-            this.labelControl6.Location = new System.Drawing.Point(14, 65);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(108, 14);
-            this.labelControl6.TabIndex = 5;
-            this.labelControl6.Text = "数据库连接字符串：";
-            // 
-            // lueditDBList
-            // 
-            this.lueditDBList.Location = new System.Drawing.Point(148, 35);
-            this.lueditDBList.Name = "lueditDBList";
-            this.lueditDBList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueditDBList.Size = new System.Drawing.Size(412, 21);
-            this.lueditDBList.TabIndex = 6;
+            this.lbcDBConnectStatus.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.lbcDBConnectStatus.Location = new System.Drawing.Point(576, 74);
+            this.lbcDBConnectStatus.Name = "lbcDBConnectStatus";
+            this.lbcDBConnectStatus.Size = new System.Drawing.Size(117, 14);
+            this.lbcDBConnectStatus.TabIndex = 7;
+            this.lbcDBConnectStatus.Text = "数据库状态：未连接";
             // 
             // frmMain
             // 
@@ -247,6 +251,7 @@
             this.Controls.Add(this.groupControl4);
             this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.groupControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -255,11 +260,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueditDBList.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teConnectString.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             this.groupControl3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.teCreateTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deCreateDate.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deCreateDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teCopyright.Properties)).EndInit();
@@ -268,7 +273,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ckDBTableList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueditDBList.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -289,11 +293,11 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.TextEdit teSlnName;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.TimeEdit teCreateTime;
         private DevExpress.XtraEditors.DateEdit deCreateDate;
         private DevExpress.XtraEditors.MemoEdit teConnectString;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LookUpEdit lueditDBList;
+        private DevExpress.XtraEditors.LabelControl lbcDBConnectStatus;
     }
 }
 

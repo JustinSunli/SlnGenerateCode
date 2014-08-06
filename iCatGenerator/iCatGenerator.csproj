@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="custom\CustomConfig.cs" />
+    <Compile Include="DBComboBoxController.cs" />
+    <Compile Include="ConnectActionCollection.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +78,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -89,11 +93,25 @@
     <Content Include="Connection.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DBConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DIConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CustomSpring.Core\CustomSpring.Core.csproj">
+      <Project>{4de64906-b976-4de5-a7d3-35772dd086c1}</Project>
+      <Name>CustomSpring.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Foundation.Core\Foundation.Core.csproj">
       <Project>{398b7fee-94cd-4f66-a5b4-180f8e443c83}</Project>
       <Name>Foundation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iCat.Generate.IService\iCat.Generate.IService.csproj">
+      <Project>{a516e39d-7ea6-45a9-a978-1ec39a78dac6}</Project>
+      <Name>iCat.Generate.IService</Name>
     </ProjectReference>
     <ProjectReference Include="..\iCat.Generate.Model\iCat.Generate.Model.csproj">
       <Project>{cc9436b2-96d3-42b7-ae03-aaf3a37b7d78}</Project>

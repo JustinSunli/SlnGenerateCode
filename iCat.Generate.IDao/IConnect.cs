@@ -6,9 +6,8 @@ using System.Text;
 
 namespace iCat.Generate.IDao
 {
-    public interface ITableDao
+    public interface IConnect
     {
-        TablesData Select();
-        
+        void SetConnection(Connection connection);
     }
 }

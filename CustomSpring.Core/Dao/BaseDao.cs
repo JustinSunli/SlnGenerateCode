@@ -158,5 +158,16 @@ namespace CustomSpring.Core.Dao
             return ds;
             
         }
+        protected void SetAdoTemplate(
+    string providerName, string connectionString)
+        {
+            #region
+            Spring.Data.Core.AdoTemplate adotemplate = new Spring.Data.Core.AdoTemplate();
+            adotemplate.DbProvider = DbProviderFactory.GetDbProvider(providerName);
+            adotemplate.DbProvider.ConnectionString = connectionString;
+            base.AdoTemplate = adotemplate;
+            #endregion
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foundation.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,10 +19,10 @@ namespace iCat.Generate.Model
         private const string _modelFormat
             = "{0}.Model";
 
+        public const string KeyNameProjectName = "ProjectName";
+        private object _prefix = "iCat.Assembly";
 
-        private string _prefix;
-
-        public string _Prefix
+        public object _Prefix
         {
             get { return _prefix; }
             set { 
@@ -84,5 +85,14 @@ namespace iCat.Generate.Model
             get { return _model; }
         }
 
+        public static Namespace GetParameters()
+        {
+            Namespace nspace = new Namespace();
+
+            Config.Get(KeyNameProjectName, ref nspace._prefix);
+            nspace._Prefix = nspace._prefix;
+            return nspace;
+
+        }
     }
 }

@@ -9,7 +9,7 @@ using System.Text;
 
 namespace iCat.Generate.Dao
 {
-    public class ColumnsDao : BaseDao, IColumnsDao
+    public class ColumnsDao : BaseDao, IColumnsDao, IConnect
     {
 
         public ColumnsData Select(
@@ -42,6 +42,13 @@ where a.object_id=object_id('{0}')", tableName);
             #region
             return this.Select(null, tableName);
             #endregion
+        }
+
+
+
+        public void SetConnection(Connection connection)
+        {
+            base.SetAdoTemplate(connection.provider, connection.connectionString);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace iCat.Generate.ServiceTest
             {
                 _CustomSpring = "CustomSpring.Core",
                 _FoundationCore = "Foundation.Core",
-                _Prefix = "iCat.Generate"
+                _Prefix = "DocumentFlow"
             };
 
             Copyright copyright = new Copyright()
@@ -41,10 +41,13 @@ namespace iCat.Generate.ServiceTest
             GenSlnService slnservice = (GenSlnService)_springContext
                 .GetObject("slnGenService");
             
-            slnservice._NameSpace = nspace;
-            slnservice._Copyright = copyright;
+            Connection connection = new Connection() { 
+                rid = 1,
+                provider = "SqlServer-2.0",
+                connectionString = "server=192.168.0.236;database=TY_QBDB;user id=zhanghui;password=zhanghui;Pooling=true;Min Pool Size=10;Max Pool Size=50;Connection Lifetime=30;Connection Timeout=30;"
+            };
 
-            slnservice.GenerateAll();
+            //slnservice.GenerateAll(connection);
             #endregion
         }
 

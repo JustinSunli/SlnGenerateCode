@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Foundation.Core;
+using iCatGenerator.custom;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -17,6 +19,8 @@ namespace iCatGenerator
             DevExpress.Skins.SkinManager.EnableFormSkins();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            CustomConfig.GetSystemParameters();
+            LogInterface.Listen(CustomConfig.LogDirectoryName.ToString());
             Application.Run(new frmMain());
         }
     }

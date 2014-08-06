@@ -49,6 +49,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="entity\CodeIneration.cs" />
+    <Compile Include="entity\Connection.cs" />
     <Compile Include="entity\Copyright.cs" />
     <Compile Include="entity\DBStructure.cs" />
     <Compile Include="entity\Namespace.cs" />

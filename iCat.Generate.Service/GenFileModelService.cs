@@ -71,15 +71,15 @@ namespace {2}
             _strIterations = new List<CodeIneration>();
             _strIterations.Add(new CodeIneration()
             {
-                _Template = "\t\tthis.{0} = dr[{1}Data.{0}].ToString();",
+                _Template = "\t\t\tthis.{0} = dr[{1}Data.{0}].ToString();",
                 _IterType = EnumStrIteration.EntityAssigns
             });
             _strIterations.Add(new CodeIneration()
             {
-                _Template = "\t/// <summary>\r\n" +
-                            "\t/// {0}。\r\n" +
-                            "\t/// </summary>\r\n" +
-                            "\tpublic string {1} {{ get; set; }}",
+                _Template = "\t\t/// <summary>\r\n" +
+                            "\t\t/// {0}。\r\n" +
+                            "\t\t/// </summary>\r\n" +
+                            "\t\tpublic string {1} {{ get; set; }}",
                 _IterType = EnumStrIteration.EntityFields
             });
 

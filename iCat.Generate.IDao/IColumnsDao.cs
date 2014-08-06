@@ -11,5 +11,6 @@ namespace iCat.Generate.IDao
     {
         ColumnsData Select(QueryCondition conditions, string tableName);
         ColumnsData Select(string tableName);
+        
     }
 }

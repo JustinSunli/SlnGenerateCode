@@ -9,7 +9,7 @@ using System.Text;
 
 namespace iCat.Generate.Service
 {
-    public class GenSlnService : GenFileServiceBase
+    public class GenSlnService : GenFileServiceBase, ISlnCreatorService
     {
         private const string _slnTemplate = @"
 Microsoft Visual Studio Solution File, Format Version 12.00
@@ -29,11 +29,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal";
-        public IColumnsDao _ColumnsDao { get; set; }
-        public ITableDao _TablesDao { get; set; }
-        public DBStructure _DBStructure { get; set; }
-        public Copyright _Copyright { get; set; }
-        public Namespace _NameSpace { get; set; }
+        //public DBStructure _DBStructure { get; set; }
+        //public Copyright _Copyright { get; set; }
+        //public Namespace _NameSpace { get; set; }
 
         private IList<IFileCreatorService> _fileServices;
         private Guid _slnGuid;
@@ -49,21 +47,22 @@ EndGlobal";
         /// <summary>
         /// 
         /// </summary>
-        public void GenerateAll()
+        public void GenerateAll(
+            Copyright _copyright,
+            Namespace _nameSpace, 
+            DBStructure _dbStructure, 
+            string dir)
         {
             #region
             this.initCache();
-
-            this.fillDBStructure();
-            string dir = "c:\\work";
 
             foreach (IFileCreatorService fileservice
                 in _fileServices)
             {
                 Project proj = fileservice.GenerateProject(
-                    this._DBStructure,
-                    this._NameSpace,
-                    this._Copyright, dir);
+                    _dbStructure,
+                    _nameSpace,
+                    _copyright, dir);
 
                 _projects.Add(proj);
             }
@@ -72,8 +71,8 @@ EndGlobal";
 
             this.createIterationStrings();
 
-            base.SaveFile(dir, 
-                string.Format("{0}.sln", _NameSpace._Prefix),
+            base.SaveFile(dir,
+                string.Format("{0}.sln", _nameSpace._Prefix),
                 string.Format(_slnTemplate, 
                 _strIterations[0]._Returns, 
                 _strIterations[1]._Returns));
@@ -82,7 +81,7 @@ EndGlobal";
                 in _fileServices)
             {
                 fileservice.GenerateCsproj(
-                    this._DBStructure,
+                    _dbStructure,
                     _projects, 
                     dir);
             }
@@ -187,14 +186,7 @@ EndProject",
             }
             #endregion
         }
-        public GenSlnService(
-            Copyright copyright, 
-            Namespace nameSpace)
-        {
-            this._Copyright = copyright;
-            this._NameSpace = nameSpace;
-            this.initFileServices();
-        }
+
         public void GenerateSelect(
             IList<string> tables)
         {
@@ -207,25 +199,14 @@ EndProject",
             
         }
 
-        private void fillDBStructure()
-        {
-            _DBStructure = new DBStructure();
-
-            TablesData tablesdata = _TablesDao.Select();
-            foreach(DataRow dr 
-                in tablesdata.Tables[0].Rows)
-            { 
-                string tablename = dr[TablesData.name].ToString();
-                _DBStructure._Tables.Add(new TableStructure() {
-                    _Name = tablename,
-                    _Columns = _ColumnsDao.Select(tablename)
-                });
-            }
-        }
-
         public GenSlnService()
         { 
             initFileServices(); 
+        }
+
+        public void Generate()
+        {
+            throw new NotImplementedException();
         }
     }
 }

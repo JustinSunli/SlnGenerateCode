@@ -206,7 +206,7 @@ namespace {2}
             _strIterations = new List<CodeIneration>();
             _strIterations.Add(new CodeIneration()
             {
-                _Template = "\t\tdt.Columns.Add({0}, typeof(System.{1}));",
+                _Template = "\t\t\tdt.Columns.Add({0}, typeof(System.{1}));",
                 _IterType = EnumStrIteration.DataColumnsAdd
             });
             _strIterations.Add(new CodeIneration()
@@ -216,10 +216,10 @@ namespace {2}
             });
             _strIterations.Add(new CodeIneration()
             {
-                _Template = "\t/// <summary>\r\n"+
-                            "\t/// {0}。\r\n"+
-                            "\t/// </summary>\r\n"+
-                            "\tpublic const string {1} = \"{1}\";",
+                _Template = "\t\t/// <summary>\r\n" +
+                            "\t\t/// {0}。\r\n" +
+                            "\t\t/// </summary>\r\n" +
+                            "\t\tpublic const string {1} = \"{1}\";",
                 _IterType = EnumStrIteration.DataFields
             });
             base._dlGetIterParams = new DLGetIterParams(getIterParams);
