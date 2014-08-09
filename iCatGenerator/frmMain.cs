@@ -3,7 +3,9 @@ using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.DXErrorProvider;
+using Foundation.Core;
 using iCat.Generate.IService;
 using iCat.Generate.Model;
 using System;
@@ -26,17 +28,19 @@ namespace iCatGenerator
         private delegate ConnectAction DLTestDBConnect();
         private DBStructure _dbStructure;
         private Namespace _nSpace;
-        public static Copyright _copyright { get; set; }
+        private static Copyright _copyright;
         public frmMain()
         {
+            #region
             InitializeComponent();
 
             UserLookAndFeel.Default.SetSkinStyle(
                 SkinManager.Default.Skins[5].SkinName
                 );
+            #endregion
         }
         /// <summary>
-        /// 
+        /// 绑定代码生成配置
         /// </summary>
         private void bindCodeConfig()
         {
@@ -50,7 +54,7 @@ namespace iCatGenerator
             #endregion
         }
         /// <summary>
-        /// 
+        /// 绑定数据表列表
         /// </summary>
         /// <param name="connection"></param>
         private void bindTables(
@@ -58,13 +62,25 @@ namespace iCatGenerator
         {
             #region
             _dbStructure = _dbService.GetDBStructure(connection);
-            this.ckDBTableList.DataSource = _dbStructure._TablesData.Tables[0].DefaultView;
-            this.ckDBTableList.DisplayMember = TablesData.name;
-            this.ckDBTableList.ValueMember = TablesData.name;
+            foreach (DataRow dr in _dbStructure._TablesData.Tables[0].Rows)
+                this.ckDBTableList.Items.Add(dr[TablesData.name]);
+            //int idx = 0;
+            //while (this.ckDBTableList.GetItem(idx) != null)
+            //{
+            //    Console.WriteLine(this.ckDBTableList.get.ToString());
+            //    idx++;
+            //}
             #endregion
         }
+
+        private void table_MouseHover(object sender, EventArgs e)
+        {
+            CheckEdit col = sender as CheckEdit;
+
+            Console.WriteLine(col.Text);
+        }
         /// <summary>
-        /// 
+        /// 页面载入
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -85,10 +101,12 @@ namespace iCatGenerator
             dbcombocontroller.BindDBList(lueditDBList_EditValueChanged);
             this.bindCodeConfig();
             this.initValidateRulers();
+
+
             #endregion
         }
         /// <summary>
-        /// 
+        /// 初始化界面提交规则
         /// </summary>
         private void initValidateRulers()
         {
@@ -104,7 +122,7 @@ namespace iCatGenerator
             #endregion
         }
         /// <summary>
-        /// 
+        /// 选择数据库后的事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -127,7 +145,7 @@ namespace iCatGenerator
             #endregion
         }
         /// <summary>
-        /// 
+        /// 测试连接数据库
         /// </summary>
         /// <returns></returns>
         private ConnectAction testDBConnect()
@@ -153,7 +171,7 @@ namespace iCatGenerator
             #endregion
         }
         /// <summary>
-        /// 
+        /// 测试连接数据库后的操作
         /// </summary>
         /// <param name="ia"></param>
         private void testDBCallback(
@@ -187,12 +205,66 @@ namespace iCatGenerator
             ConnectActionCollection.Remove(action);
             #endregion
         }
-
+        /// <summary>
+        /// 生成代码事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sbGenerateCode_Click(
             object sender, EventArgs e)
         {
-            if(dxValidationProvider1.Validate())
-                _slnService.GenerateAll(_copyright, _nSpace, _dbStructure, "c:\\work");
+            #region
+            if (dxValidationProvider1.Validate())
+            {
+                if (this.folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    string path = this.folderBrowserDialog1.SelectedPath;
+                    this.saveConfig();
+                    _slnService.GenerateAll(_copyright, _nSpace, _dbStructure, path);
+                    ExtMessage.Show(string.Format("成功生成到目录{0}！",path));
+                }
+
+            }
+            #endregion
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void saveConfig()
+        {
+            #region
+            object slnname, creator, creattime, company;
+            slnname = this.teSlnName.Text;
+            creator = this.teCreator.Text;
+            creattime = this.deCreateDate.Text;
+            company = this.teCopyright.Text;
+            Config.Update(Namespace.KeyNameProjectName, ref slnname);
+            Config.Update(Copyright.KeyNameCreator, ref creator);
+            Config.Update(Copyright.KeyNameCreatTime, ref creattime);
+            Config.Update(Copyright.KeyNameCompany, ref company);
+            _nSpace._Prefix = slnname;
+            _copyright._Creater = creator;
+            _copyright._GenerateTime = creattime;
+            _copyright._Company = company;
+            #endregion
+        }
+
+        private void sbtnDBTableAllCheck_Click(
+            object sender, EventArgs e)
+        {
+
+        }
+
+        private void sbtnDBTableNoneCheck_Click(
+            object sender, EventArgs e)
+        {
+
+        }
+
+        private void sbtnDBTableReverseCheck_Click(
+            object sender, EventArgs e)
+        {
+
         }
     }
 }

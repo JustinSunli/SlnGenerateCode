@@ -19,6 +19,7 @@ namespace iCat.Generate.Service
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace {2}
 {{
@@ -44,7 +45,7 @@ namespace {2}
             #region
             DataTable dt = new DataTable({3});
 {7}
-            dt.PrimaryKey = new DataColumn[{9}] {{ dt.Columns[uid] }};
+            dt.PrimaryKey = new DataColumn[{9}] {{ {10} }};
             dt.TableName = {3};
             this.Tables.Add(dt);
             this.DataSetName = ""T{3}"";
@@ -150,9 +151,9 @@ namespace {2}
             Entity{3} {4})
         {{
             #region
-            object[] dbparams = new object[{9}];
-            dbparams[0] = {4}.uid;
-            return dbparams;
+            IList<object> dbparams = new List<object>();
+{11}
+            return dbparams.ToArray<object>();
             #endregion
         }}
     }}
@@ -162,6 +163,8 @@ namespace {2}
             TableStructure table)
         {
             #region
+            IList<object> dbparams = new List<object>();
+            
             string all = "";
             this.createIterationStrings(table);
             List<string> args = new List<string>();
@@ -174,12 +177,48 @@ namespace {2}
             args.Add(this._strIterations[2]._Returns.ToString());
             args.Add(this._strIterations[0]._Returns.ToString());
             args.Add(this._strIterations[1]._Returns.ToString());
-            args.Add(table._Columns
-                .Tables[0].PrimaryKey
-                .Length.ToString());
+            args.Add(table._PrimaryKeys.Count.ToString());
+            args.Add(this.getDataTableKeys(table._PrimaryKeys));
+            args.Add(this.getPrimaryKeysAssign(table));
 
             all = string.Format(_fileTemplate, args.ToArray<string>());
             return all;
+            #endregion
+        }
+
+        private string getDataTableKeys(
+            List<string> keys)
+        {
+            #region
+            string format = "dt.Columns[{0}],";
+            string allkeys = "";
+            foreach (string key in keys)
+                allkeys += string.Format(format, key);
+            if (keys.Count > 0)
+                allkeys = allkeys.Remove(allkeys.Length - 1, 1);
+            return allkeys;
+            #endregion
+        }
+
+        private string getPrimaryKeysAssign(
+            TableStructure table)
+        {
+            #region
+            string format = "\t\t\tdbparams.Add({0}.{1});";
+            StringBuilder assigns = new StringBuilder();
+            for (int i = 0; i < table._PrimaryKeys.Count;i++ )
+            {
+                string temp = string.Format(
+                    format, 
+                    table._ParamNamePrefix, 
+                    table._PrimaryKeys[i]);
+
+                if (i == table._PrimaryKeys.Count - 1)
+                    assigns.Append(temp);
+                else
+                    assigns.AppendLine(temp);
+            }
+            return assigns.ToString();
             #endregion
         }
 
@@ -289,9 +328,9 @@ namespace {2}
 
             string codedir = Path.Combine(
                 parentDir, base._Project._Name, "data");
+            base._FileNameFormat = "{0}Data.cs";
 
             base.CheckDir(codedir);
-            base._FileNameFormat = "{0}Data.cs";
             foreach (TableStructure table in dbStructure._Tables)
             {
                 string filename = string.Format(_FileNameFormat, table._Name);

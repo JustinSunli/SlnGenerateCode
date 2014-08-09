@@ -43,10 +43,21 @@ namespace iCat.Generate.Model
             set { _columns = value; }
         }
 
+        private List<string> _primaryKeys;
+
+        public List<string> _PrimaryKeys
+        {
+            get { return _primaryKeys; }
+            set { _primaryKeys = value; }
+        }
+        
+
         public TableStructure()
         {
             if (_columns == null)
                 this._columns = new ColumnsData();
+            if (_primaryKeys == null)
+                this._primaryKeys = new List<string>();
         }
 
         private string getParamPrefix()

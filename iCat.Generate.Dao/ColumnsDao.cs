@@ -4,6 +4,7 @@ using iCat.Generate.IDao;
 using iCat.Generate.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -44,11 +45,25 @@ where a.object_id=object_id('{0}')", tableName);
             #endregion
         }
 
-
-
-        public void SetConnection(Connection connection)
+        public void SetConnection(
+            Connection connection)
         {
-            base.SetAdoTemplate(connection.provider, connection.connectionString);
+            #region
+            base.SetAdoTemplate(
+                connection.provider, 
+                connection.connectionString);
+            #endregion
+        }
+
+        public List<string> SelectPrimaryKeys(
+            string tableName)
+        {
+            List<string> keys = new List<string>();
+            string sql = string.Format("exec sp_pkeys '{0}'", tableName);
+            DataSet ds = base.AdoTemplate.DataSetCreate(CommandType.Text, sql);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+                keys.Add(dr["COLUMN_NAME"].ToString());
+            return keys;
         }
     }
 }

@@ -4,6 +4,7 @@ using iCat.Generate.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -56,13 +57,14 @@ EndGlobal";
             #region
             this.initCache();
 
+            string slnpath = Path.Combine(dir, _nameSpace._Prefix.ToString());
             foreach (IFileCreatorService fileservice
                 in _fileServices)
             {
                 Project proj = fileservice.GenerateProject(
                     _dbStructure,
                     _nameSpace,
-                    _copyright, dir);
+                    _copyright, slnpath);
 
                 _projects.Add(proj);
             }
@@ -71,7 +73,7 @@ EndGlobal";
 
             this.createIterationStrings();
 
-            base.SaveFile(dir,
+            base.SaveFile(slnpath,
                 string.Format("{0}.sln", _nameSpace._Prefix),
                 string.Format(_slnTemplate, 
                 _strIterations[0]._Returns, 
@@ -82,8 +84,8 @@ EndGlobal";
             {
                 fileservice.GenerateCsproj(
                     _dbStructure,
-                    _projects, 
-                    dir);
+                    _projects,
+                    slnpath);
             }
 
             #endregion

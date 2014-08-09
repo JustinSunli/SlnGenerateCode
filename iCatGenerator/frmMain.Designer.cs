@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.sbtnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.lbcDBConnectStatus = new DevExpress.XtraEditors.LabelControl();
             this.lueditDBList = new DevExpress.XtraEditors.LookUpEdit();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.sbDBConifg = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.teConnectString = new DevExpress.XtraEditors.MemoEdit();
@@ -50,6 +50,11 @@
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.ckDBTableList = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.sbtnDBTableAllCheck = new DevExpress.XtraEditors.SimpleButton();
+            this.sbtnDBTableNoneCheck = new DevExpress.XtraEditors.SimpleButton();
+            this.sbtnDBTableReverseCheck = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueditDBList.Properties)).BeginInit();
@@ -65,13 +70,15 @@
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ckDBTableList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.sbtnRefresh);
             this.groupControl1.Controls.Add(this.lbcDBConnectStatus);
             this.groupControl1.Controls.Add(this.lueditDBList);
-            this.groupControl1.Controls.Add(this.labelControl6);
             this.groupControl1.Controls.Add(this.sbDBConifg);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.teConnectString);
@@ -81,6 +88,16 @@
             this.groupControl1.Size = new System.Drawing.Size(766, 132);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "数据库";
+            // 
+            // sbtnRefresh
+            // 
+            this.sbtnRefresh.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sbtnRefresh.Appearance.Options.UseFont = true;
+            this.sbtnRefresh.Location = new System.Drawing.Point(539, 36);
+            this.sbtnRefresh.Name = "sbtnRefresh";
+            this.sbtnRefresh.Size = new System.Drawing.Size(61, 26);
+            this.sbtnRefresh.TabIndex = 8;
+            this.sbtnRefresh.Text = "刷新";
             // 
             // lbcDBConnectStatus
             // 
@@ -100,21 +117,13 @@
             this.lueditDBList.Size = new System.Drawing.Size(376, 21);
             this.lueditDBList.TabIndex = 4;
             // 
-            // labelControl6
-            // 
-            this.labelControl6.Location = new System.Drawing.Point(14, 65);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(108, 14);
-            this.labelControl6.TabIndex = 5;
-            this.labelControl6.Text = "数据库连接字符串：";
-            // 
             // sbDBConifg
             // 
-            this.sbDBConifg.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sbDBConifg.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sbDBConifg.Appearance.Options.UseFont = true;
-            this.sbDBConifg.Location = new System.Drawing.Point(539, 36);
+            this.sbDBConifg.Location = new System.Drawing.Point(606, 36);
             this.sbDBConifg.Name = "sbDBConifg";
-            this.sbDBConifg.Size = new System.Drawing.Size(212, 40);
+            this.sbDBConifg.Size = new System.Drawing.Size(145, 26);
             this.sbDBConifg.TabIndex = 2;
             this.sbDBConifg.Text = "配置数据库";
             // 
@@ -129,9 +138,9 @@
             // teConnectString
             // 
             this.teConnectString.Enabled = false;
-            this.teConnectString.Location = new System.Drawing.Point(148, 62);
+            this.teConnectString.Location = new System.Drawing.Point(15, 62);
             this.teConnectString.Name = "teConnectString";
-            this.teConnectString.Size = new System.Drawing.Size(376, 64);
+            this.teConnectString.Size = new System.Drawing.Size(509, 64);
             this.teConnectString.TabIndex = 5;
             // 
             // groupControl3
@@ -169,11 +178,11 @@
             // 
             // sbGenerateCode
             // 
-            this.sbGenerateCode.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sbGenerateCode.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sbGenerateCode.Appearance.Options.UseFont = true;
-            this.sbGenerateCode.Location = new System.Drawing.Point(15, 240);
+            this.sbGenerateCode.Location = new System.Drawing.Point(15, 262);
             this.sbGenerateCode.Name = "sbGenerateCode";
-            this.sbGenerateCode.Size = new System.Drawing.Size(212, 40);
+            this.sbGenerateCode.Size = new System.Drawing.Size(212, 26);
             this.sbGenerateCode.TabIndex = 11;
             this.sbGenerateCode.Text = "代码生成";
             this.sbGenerateCode.Click += new System.EventHandler(this.sbGenerateCode_Click);
@@ -234,6 +243,7 @@
             // groupControl4
             // 
             this.groupControl4.Controls.Add(this.ckDBTableList);
+            this.groupControl4.Controls.Add(this.panelControl1);
             this.groupControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl4.Location = new System.Drawing.Point(0, 132);
             this.groupControl4.Name = "groupControl4";
@@ -248,8 +258,52 @@
             this.ckDBTableList.Location = new System.Drawing.Point(2, 23);
             this.ckDBTableList.MultiColumn = true;
             this.ckDBTableList.Name = "ckDBTableList";
-            this.ckDBTableList.Size = new System.Drawing.Size(521, 269);
+            this.ckDBTableList.Size = new System.Drawing.Size(521, 235);
             this.ckDBTableList.TabIndex = 10;
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.sbtnDBTableReverseCheck);
+            this.panelControl1.Controls.Add(this.sbtnDBTableNoneCheck);
+            this.panelControl1.Controls.Add(this.sbtnDBTableAllCheck);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl1.Location = new System.Drawing.Point(2, 258);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(521, 34);
+            this.panelControl1.TabIndex = 11;
+            // 
+            // sbtnDBTableAllCheck
+            // 
+            this.sbtnDBTableAllCheck.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sbtnDBTableAllCheck.Appearance.Options.UseFont = true;
+            this.sbtnDBTableAllCheck.Location = new System.Drawing.Point(4, 4);
+            this.sbtnDBTableAllCheck.Name = "sbtnDBTableAllCheck";
+            this.sbtnDBTableAllCheck.Size = new System.Drawing.Size(84, 26);
+            this.sbtnDBTableAllCheck.TabIndex = 12;
+            this.sbtnDBTableAllCheck.Text = "全选";
+            this.sbtnDBTableAllCheck.Click += new System.EventHandler(this.sbtnDBTableAllCheck_Click);
+            // 
+            // sbtnDBTableNoneCheck
+            // 
+            this.sbtnDBTableNoneCheck.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sbtnDBTableNoneCheck.Appearance.Options.UseFont = true;
+            this.sbtnDBTableNoneCheck.Location = new System.Drawing.Point(94, 4);
+            this.sbtnDBTableNoneCheck.Name = "sbtnDBTableNoneCheck";
+            this.sbtnDBTableNoneCheck.Size = new System.Drawing.Size(84, 26);
+            this.sbtnDBTableNoneCheck.TabIndex = 13;
+            this.sbtnDBTableNoneCheck.Text = "全不选";
+            this.sbtnDBTableNoneCheck.Click += new System.EventHandler(this.sbtnDBTableNoneCheck_Click);
+            // 
+            // sbtnDBTableReverseCheck
+            // 
+            this.sbtnDBTableReverseCheck.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sbtnDBTableReverseCheck.Appearance.Options.UseFont = true;
+            this.sbtnDBTableReverseCheck.Location = new System.Drawing.Point(184, 4);
+            this.sbtnDBTableReverseCheck.Name = "sbtnDBTableReverseCheck";
+            this.sbtnDBTableReverseCheck.Size = new System.Drawing.Size(84, 26);
+            this.sbtnDBTableReverseCheck.TabIndex = 14;
+            this.sbtnDBTableReverseCheck.Text = "反选";
+            this.sbtnDBTableReverseCheck.Click += new System.EventHandler(this.sbtnDBTableReverseCheck_Click);
             // 
             // frmMain
             // 
@@ -283,6 +337,8 @@
             this.groupControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ckDBTableList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -305,10 +361,15 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.DateEdit deCreateDate;
         private DevExpress.XtraEditors.MemoEdit teConnectString;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LookUpEdit lueditDBList;
         private DevExpress.XtraEditors.LabelControl lbcDBConnectStatus;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private DevExpress.XtraEditors.SimpleButton sbtnRefresh;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.SimpleButton sbtnDBTableReverseCheck;
+        private DevExpress.XtraEditors.SimpleButton sbtnDBTableNoneCheck;
+        private DevExpress.XtraEditors.SimpleButton sbtnDBTableAllCheck;
     }
 }
 

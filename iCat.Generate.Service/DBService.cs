@@ -44,7 +44,8 @@ namespace iCat.Generate.Service
                 dbstructure._Tables.Add(new TableStructure()
                 {
                     _Name = tablename,
-                    _Columns = _ColumnsDao.Select(tablename)
+                    _Columns = _ColumnsDao.Select(tablename),
+                    _PrimaryKeys = _ColumnsDao.SelectPrimaryKeys(tablename)
                 });
             }
             return dbstructure;

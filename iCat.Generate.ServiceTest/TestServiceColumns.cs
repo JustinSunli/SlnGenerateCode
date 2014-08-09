@@ -35,7 +35,7 @@ namespace iCat.Generate.ServiceTest
         public void TestRegex()
         {
             #region
-            string htmlmatch = @"/<(.)>.<\/\1>|<(.*) \/>/";
+            //string htmlmatch = @"/<(.)>.<\/\1>|<(.*) \/>/";
             string intmatch = @"\w(\d*)\w";
             Regex regex = new Regex(intmatch); //匹配两个字母间的数字串
             GroupCollection groups = regex.Match("<table><br>abc1212121wef</table>").Groups;

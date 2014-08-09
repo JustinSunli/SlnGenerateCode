@@ -11,6 +11,7 @@ namespace iCat.Generate.IDao
     {
         ColumnsData Select(QueryCondition conditions, string tableName);
         ColumnsData Select(string tableName);
-        
+        List<string> SelectPrimaryKeys(
+            string tableName);
     }
 }
