@@ -169,8 +169,11 @@ namespace {2}
             base._FileNameFormat = "Entity{0}.cs";
             foreach (TableStructure table in dbStructure._Tables)
             {
-                string filename = string.Format(_FileNameFormat, table._Name);
-                base.SaveFile(codedir, filename, this.GetCode(table));
+                if (table._IsGen)
+                {
+                    string filename = string.Format(_FileNameFormat, table._Name);
+                    base.SaveFile(codedir, filename, this.GetCode(table));
+                }
             }
 
             _modelDataService = new GenFileModelDataService();

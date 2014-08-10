@@ -48,7 +48,7 @@ EndGlobal";
         /// <summary>
         /// 
         /// </summary>
-        public void GenerateAll(
+        public void Generate(
             Copyright _copyright,
             Namespace _nameSpace, 
             DBStructure _dbStructure, 
@@ -56,7 +56,7 @@ EndGlobal";
         {
             #region
             this.initCache();
-
+            //this.fillTablesIsGen(_dbStructure, _selTables);
             string slnpath = Path.Combine(dir, _nameSpace._Prefix.ToString());
             foreach (IFileCreatorService fileservice
                 in _fileServices)
@@ -189,17 +189,6 @@ EndProject",
             #endregion
         }
 
-        public void GenerateSelect(
-            IList<string> tables)
-        {
-            this.fillDBStructure(tables);
-        }
-
-        private void fillDBStructure(
-            IList<string> tables)
-        { 
-            
-        }
 
         public GenSlnService()
         { 

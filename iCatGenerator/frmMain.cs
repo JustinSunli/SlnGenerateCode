@@ -24,11 +24,11 @@ namespace iCatGenerator
     {
         public static ConnectionsData _ConnectionsData { get; set; }
         private IDBService _dbService;
-        private ISlnCreatorService _slnService;
         private delegate ConnectAction DLTestDBConnect();
-        private DBStructure _dbStructure;
-        private Namespace _nSpace;
-        private static Copyright _copyright;
+        public static DBStructure _DBStructure { get; set; }
+        public static Namespace _NSpace { get; set; }
+        public static Copyright _Copyright { get; set; }
+        public static List<string> _SelectTables { get; set; }
         public frmMain()
         {
             #region
@@ -45,12 +45,12 @@ namespace iCatGenerator
         private void bindCodeConfig()
         {
             #region
-            this.teCreator.Text = _copyright._Creater.ToString();
-            this.teCopyright.Text = _copyright._Company.ToString();
+            this.teCreator.Text = _Copyright._Creater.ToString();
+            this.teCopyright.Text = _Copyright._Company.ToString();
             this.deCreateDate.Properties.VistaDisplayMode = DefaultBoolean.True;
             this.deCreateDate.Properties.VistaEditTime = DefaultBoolean.True;
-            this.deCreateDate.Text = Convert.ToDateTime(_copyright._GenerateTime).ToString("yyyy-MM-dd HH:mm:ss");
-            this.teSlnName.Text = _nSpace._Prefix.ToString();
+            this.deCreateDate.Text = Convert.ToDateTime(_Copyright._GenerateTime).ToString("yyyy-MM-dd HH:mm:ss");
+            this.teSlnName.Text = _NSpace._Prefix.ToString();
             #endregion
         }
         /// <summary>
@@ -61,8 +61,8 @@ namespace iCatGenerator
             Connection connection)
         {
             #region
-            _dbStructure = _dbService.GetDBStructure(connection);
-            foreach (DataRow dr in _dbStructure._TablesData.Tables[0].Rows)
+            _DBStructure = _dbService.GetDBStructure(connection);
+            foreach (DataRow dr in _DBStructure._TablesData.Tables[0].Rows)
                 this.ckDBTableList.Items.Add(dr[TablesData.name]);
             //int idx = 0;
             //while (this.ckDBTableList.GetItem(idx) != null)
@@ -90,10 +90,10 @@ namespace iCatGenerator
             #region
             SpringManager.Init();
             _dbService = (IDBService)SpringManager.GetObject("dbService");
-            _slnService = (ISlnCreatorService)SpringManager.GetObject("slnGenService");
             ConnectActionCollection.Init();
-            _copyright = Copyright.GetParameters();
-            _nSpace = Namespace.GetParameters();
+            _Copyright = Copyright.GetParameters();
+            _NSpace = Namespace.GetParameters();
+            _SelectTables = new List<string>();
 
             DBComboBoxController dbcombocontroller = 
                 new DBComboBoxController(this.lueditDBList);
@@ -195,8 +195,11 @@ namespace iCatGenerator
                     {
                         this.lbcDBConnectStatus.ForeColor = Color.Red;
                         msg = "数据库状态：连接失败";
-                        if (_dbStructure != null)
-                            _dbStructure._TablesData.Tables[0].Rows.Clear();
+                        if (_DBStructure != null)
+                        { 
+                            _DBStructure._TablesData.Tables[0].Rows.Clear();
+                            this.ckDBTableList.Items.Clear();
+                        }
                     }
                     this.lbcDBConnectStatus.Text = msg;
                 }));
@@ -216,14 +219,19 @@ namespace iCatGenerator
             #region
             if (dxValidationProvider1.Validate())
             {
-                if (this.folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                BaseCheckedListBoxControl.CheckedItemCollection ck 
+                    = this.ckDBTableList.CheckedItems;
+                if (ck.Count <= 0)
                 {
-                    string path = this.folderBrowserDialog1.SelectedPath;
-                    this.saveConfig();
-                    _slnService.GenerateAll(_copyright, _nSpace, _dbStructure, path);
-                    ExtMessage.Show(string.Format("成功生成到目录{0}！",path));
+                    ExtMessage.Show("请选择要生成代码的数据表！");
+                    return;
                 }
+                this.saveConfig();
+                _SelectTables.Clear();
+                foreach (CheckedListBoxItem s in ck)
+                    _SelectTables.Add(s.Value.ToString());
 
+                (new frmGenInfor()).ShowDialog();
             }
             #endregion
         }
@@ -242,29 +250,41 @@ namespace iCatGenerator
             Config.Update(Copyright.KeyNameCreator, ref creator);
             Config.Update(Copyright.KeyNameCreatTime, ref creattime);
             Config.Update(Copyright.KeyNameCompany, ref company);
-            _nSpace._Prefix = slnname;
-            _copyright._Creater = creator;
-            _copyright._GenerateTime = creattime;
-            _copyright._Company = company;
+            _NSpace._Prefix = slnname;
+            _Copyright._Creater = creator;
+            _Copyright._GenerateTime = creattime;
+            _Copyright._Company = company;
             #endregion
         }
 
         private void sbtnDBTableAllCheck_Click(
             object sender, EventArgs e)
         {
-
+            #region
+            foreach (CheckedListBoxItem obj in this.ckDBTableList.Items)
+                obj.CheckState = CheckState.Checked;
+            #endregion
         }
 
         private void sbtnDBTableNoneCheck_Click(
             object sender, EventArgs e)
         {
-
+            #region
+            foreach (CheckedListBoxItem obj in this.ckDBTableList.Items)
+                obj.CheckState = CheckState.Unchecked;
+            #endregion
         }
 
         private void sbtnDBTableReverseCheck_Click(
             object sender, EventArgs e)
         {
-
+            #region
+            foreach (CheckedListBoxItem obj in this.ckDBTableList.Items)
+                obj.CheckState = 
+                    (obj.CheckState == CheckState.Checked)
+                    ?CheckState.Unchecked
+                    :CheckState.Checked;
+            #endregion
         }
     }
 }

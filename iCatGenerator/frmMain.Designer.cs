@@ -49,12 +49,11 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.ckDBTableList = new DevExpress.XtraEditors.CheckedListBoxControl();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.sbtnDBTableAllCheck = new DevExpress.XtraEditors.SimpleButton();
-            this.sbtnDBTableNoneCheck = new DevExpress.XtraEditors.SimpleButton();
             this.sbtnDBTableReverseCheck = new DevExpress.XtraEditors.SimpleButton();
+            this.sbtnDBTableNoneCheck = new DevExpress.XtraEditors.SimpleButton();
+            this.sbtnDBTableAllCheck = new DevExpress.XtraEditors.SimpleButton();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueditDBList.Properties)).BeginInit();
@@ -69,9 +68,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ckDBTableList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -137,9 +136,9 @@
             // 
             // teConnectString
             // 
-            this.teConnectString.Enabled = false;
             this.teConnectString.Location = new System.Drawing.Point(15, 62);
             this.teConnectString.Name = "teConnectString";
+            this.teConnectString.Properties.ReadOnly = true;
             this.teConnectString.Size = new System.Drawing.Size(509, 64);
             this.teConnectString.TabIndex = 5;
             // 
@@ -184,7 +183,7 @@
             this.sbGenerateCode.Name = "sbGenerateCode";
             this.sbGenerateCode.Size = new System.Drawing.Size(212, 26);
             this.sbGenerateCode.TabIndex = 11;
-            this.sbGenerateCode.Text = "代码生成";
+            this.sbGenerateCode.Text = "运行代码生成向导";
             this.sbGenerateCode.Click += new System.EventHandler(this.sbGenerateCode_Click);
             // 
             // teCopyright
@@ -272,16 +271,16 @@
             this.panelControl1.Size = new System.Drawing.Size(521, 34);
             this.panelControl1.TabIndex = 11;
             // 
-            // sbtnDBTableAllCheck
+            // sbtnDBTableReverseCheck
             // 
-            this.sbtnDBTableAllCheck.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sbtnDBTableAllCheck.Appearance.Options.UseFont = true;
-            this.sbtnDBTableAllCheck.Location = new System.Drawing.Point(4, 4);
-            this.sbtnDBTableAllCheck.Name = "sbtnDBTableAllCheck";
-            this.sbtnDBTableAllCheck.Size = new System.Drawing.Size(84, 26);
-            this.sbtnDBTableAllCheck.TabIndex = 12;
-            this.sbtnDBTableAllCheck.Text = "全选";
-            this.sbtnDBTableAllCheck.Click += new System.EventHandler(this.sbtnDBTableAllCheck_Click);
+            this.sbtnDBTableReverseCheck.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sbtnDBTableReverseCheck.Appearance.Options.UseFont = true;
+            this.sbtnDBTableReverseCheck.Location = new System.Drawing.Point(184, 4);
+            this.sbtnDBTableReverseCheck.Name = "sbtnDBTableReverseCheck";
+            this.sbtnDBTableReverseCheck.Size = new System.Drawing.Size(84, 26);
+            this.sbtnDBTableReverseCheck.TabIndex = 14;
+            this.sbtnDBTableReverseCheck.Text = "反选";
+            this.sbtnDBTableReverseCheck.Click += new System.EventHandler(this.sbtnDBTableReverseCheck_Click);
             // 
             // sbtnDBTableNoneCheck
             // 
@@ -294,16 +293,16 @@
             this.sbtnDBTableNoneCheck.Text = "全不选";
             this.sbtnDBTableNoneCheck.Click += new System.EventHandler(this.sbtnDBTableNoneCheck_Click);
             // 
-            // sbtnDBTableReverseCheck
+            // sbtnDBTableAllCheck
             // 
-            this.sbtnDBTableReverseCheck.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sbtnDBTableReverseCheck.Appearance.Options.UseFont = true;
-            this.sbtnDBTableReverseCheck.Location = new System.Drawing.Point(184, 4);
-            this.sbtnDBTableReverseCheck.Name = "sbtnDBTableReverseCheck";
-            this.sbtnDBTableReverseCheck.Size = new System.Drawing.Size(84, 26);
-            this.sbtnDBTableReverseCheck.TabIndex = 14;
-            this.sbtnDBTableReverseCheck.Text = "反选";
-            this.sbtnDBTableReverseCheck.Click += new System.EventHandler(this.sbtnDBTableReverseCheck_Click);
+            this.sbtnDBTableAllCheck.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sbtnDBTableAllCheck.Appearance.Options.UseFont = true;
+            this.sbtnDBTableAllCheck.Location = new System.Drawing.Point(4, 4);
+            this.sbtnDBTableAllCheck.Name = "sbtnDBTableAllCheck";
+            this.sbtnDBTableAllCheck.Size = new System.Drawing.Size(84, 26);
+            this.sbtnDBTableAllCheck.TabIndex = 12;
+            this.sbtnDBTableAllCheck.Text = "全选";
+            this.sbtnDBTableAllCheck.Click += new System.EventHandler(this.sbtnDBTableAllCheck_Click);
             // 
             // frmMain
             // 
@@ -336,9 +335,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ckDBTableList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -364,7 +363,6 @@
         private DevExpress.XtraEditors.LookUpEdit lueditDBList;
         private DevExpress.XtraEditors.LabelControl lbcDBConnectStatus;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private DevExpress.XtraEditors.SimpleButton sbtnRefresh;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.SimpleButton sbtnDBTableReverseCheck;

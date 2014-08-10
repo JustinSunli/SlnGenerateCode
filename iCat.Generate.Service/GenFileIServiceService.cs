@@ -136,8 +136,11 @@ namespace {2}
             base._FileNameFormat = "I{0}Service.cs";
             foreach (TableStructure table in dbStructure._Tables)
             {
-                string filename = string.Format(_FileNameFormat, table._Name);
-                base.SaveFile(codedir, filename, this.GetCode(table));
+                if (table._IsGen)
+                {
+                    string filename = string.Format(_FileNameFormat, table._Name);
+                    base.SaveFile(codedir, filename, this.GetCode(table));
+                }
             }
             return this._Project;
             #endregion

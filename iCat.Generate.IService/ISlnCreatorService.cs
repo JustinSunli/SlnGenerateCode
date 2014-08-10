@@ -8,7 +8,10 @@ namespace iCat.Generate.IService
 {
     public interface ISlnCreatorService
     {
-        void Generate();
-        void GenerateAll(Copyright _copyright, Namespace _nameSpace, DBStructure _dbStructure, string dir);
+        void Generate(
+            Copyright copyright, 
+            Namespace nameSpace, 
+            DBStructure dbStructure, 
+            string dir);
     }
 }

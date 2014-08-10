@@ -7,6 +7,14 @@ namespace iCat.Generate.Model
 {
     public class TableStructure
     {
+        private bool _isGen = false;
+
+        public bool _IsGen
+        {
+            get { return _isGen; }
+            set { _isGen = value; }
+        }
+        
         private string _name;
 
         public string _Name

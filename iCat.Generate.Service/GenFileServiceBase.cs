@@ -98,15 +98,15 @@ namespace iCat.Generate.Service
             StringBuilder files = new StringBuilder();
             for (int i = 0; i < dbStructure._Tables.Count; i++)
             {
-                string tablename = dbStructure._Tables[i]._Name;
-                string temp = string.Format(
-                    string.Format(@"<Compile Include=""{0}"" />", _FileNameFormat),
-                    tablename);
+                if (dbStructure._Tables[i]._IsGen)
+                {
+                    string tablename = dbStructure._Tables[i]._Name;
+                    string temp = string.Format(
+                        string.Format(@"<Compile Include=""{0}"" />", _FileNameFormat),
+                        tablename);
 
-                if (i == dbStructure._Tables.Count - 1)
-                    files.Append(temp);
-                else
                     files.AppendLine(temp);
+                }
             }
             return files;
             #endregion

@@ -60,6 +60,12 @@
     <Compile Include="custom\CustomConfig.cs" />
     <Compile Include="DBComboBoxController.cs" />
     <Compile Include="ConnectActionCollection.cs" />
+    <Compile Include="frmGenInfor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGenInfor.Designer.cs">
+      <DependentUpon>frmGenInfor.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmGenInfor.resx">
+      <DependentUpon>frmGenInfor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
