@@ -8,8 +8,17 @@ namespace iCat.Generate.IService
 {
     public interface IFileCreatorService
     {
-        void Generate();
+        /// <summary>
+        /// 生成单页文件
+        /// </summary>
+        void Generate(
+            TableStructure table);
 
+        /// <summary>
+        /// 根据表获取单页文件
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
         string GetCode(
             TableStructure table);
 

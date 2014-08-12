@@ -61,23 +61,11 @@ namespace iCatGenerator
             Connection connection)
         {
             #region
+            this.ckDBTableList.Items.Clear();
             _DBStructure = _dbService.GetDBStructure(connection);
             foreach (DataRow dr in _DBStructure._TablesData.Tables[0].Rows)
                 this.ckDBTableList.Items.Add(dr[TablesData.name]);
-            //int idx = 0;
-            //while (this.ckDBTableList.GetItem(idx) != null)
-            //{
-            //    Console.WriteLine(this.ckDBTableList.get.ToString());
-            //    idx++;
-            //}
             #endregion
-        }
-
-        private void table_MouseHover(object sender, EventArgs e)
-        {
-            CheckEdit col = sender as CheckEdit;
-
-            Console.WriteLine(col.Text);
         }
         /// <summary>
         /// 页面载入
@@ -256,7 +244,11 @@ namespace iCatGenerator
             _Copyright._Company = company;
             #endregion
         }
-
+        /// <summary>
+        /// 全选表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sbtnDBTableAllCheck_Click(
             object sender, EventArgs e)
         {
@@ -265,7 +257,11 @@ namespace iCatGenerator
                 obj.CheckState = CheckState.Checked;
             #endregion
         }
-
+        /// <summary>
+        /// 全不选表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sbtnDBTableNoneCheck_Click(
             object sender, EventArgs e)
         {
@@ -274,7 +270,11 @@ namespace iCatGenerator
                 obj.CheckState = CheckState.Unchecked;
             #endregion
         }
-
+        /// <summary>
+        /// 反选表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sbtnDBTableReverseCheck_Click(
             object sender, EventArgs e)
         {
@@ -284,6 +284,18 @@ namespace iCatGenerator
                     (obj.CheckState == CheckState.Checked)
                     ?CheckState.Unchecked
                     :CheckState.Checked;
+            #endregion
+        }
+        /// <summary>
+        /// 刷新连接
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void sbtnRefresh_Click(
+            object sender, EventArgs e)
+        {
+            #region
+            lueditDBList_EditValueChanged(null, null);
             #endregion
         }
     }

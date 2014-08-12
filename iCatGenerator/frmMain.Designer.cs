@@ -97,6 +97,7 @@
             this.sbtnRefresh.Size = new System.Drawing.Size(61, 26);
             this.sbtnRefresh.TabIndex = 8;
             this.sbtnRefresh.Text = "刷新";
+            this.sbtnRefresh.Click += new System.EventHandler(this.sbtnRefresh_Click);
             // 
             // lbcDBConnectStatus
             // 

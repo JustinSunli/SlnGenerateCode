@@ -67,7 +67,8 @@ namespace {2}
             #endregion
         }
 
-        public void Generate()
+        public void Generate(
+            TableStructure table)
         {
             throw new NotImplementedException();
         }

@@ -14,6 +14,11 @@ namespace iCat.Generate.Service
         public string _Usings { get; set; }
         public string _Copyright { get; set; }
         public string _FileNameFormat { get; set; }
+        /// <summary>
+        /// 连接引用命名空间
+        /// </summary>
+        /// <param name="usings"></param>
+        /// <returns></returns>
         protected string StrcatUsing(
             IList<string> usings)
         {
@@ -30,15 +35,21 @@ namespace iCat.Generate.Service
             }
             return strusings.ToString();
             #endregion
-
         }
-
+        /// <summary>
+        /// 生成迭代参数（代理模型）
+        /// </summary>
+        /// <param name="iter"></param>
+        /// <param name="colsRowIndex"></param>
+        /// <param name="table"></param>
+        /// <returns></returns>
         protected delegate object[] DLGetIterParams(
             CodeIneration iter,
             int colsRowIndex,
             TableStructure table);
 
         protected DLGetIterParams _dlGetIterParams;
+
         protected void AppendCodeInerationsByTable(
             TableStructure table, 
             List<CodeIneration> strIterations)
@@ -60,6 +71,12 @@ namespace iCat.Generate.Service
             }
             #endregion
         }
+        /// <summary>
+        /// 保存单个文件
+        /// </summary>
+        /// <param name="codeDir">代码目录</param>
+        /// <param name="fileName">文件名</param>
+        /// <param name="content">文件内容</param>
         protected void SaveFile(
             string codeDir, 
             string fileName, 
@@ -81,7 +98,10 @@ namespace iCat.Generate.Service
             sw.Dispose();
             #endregion
         }
-
+        /// <summary>
+        /// 检测目录合法性
+        /// </summary>
+        /// <param name="codeDir"></param>
         protected void CheckDir(
             string codeDir)
         {
@@ -90,8 +110,12 @@ namespace iCat.Generate.Service
                 Directory.CreateDirectory(codeDir);
             #endregion
         }
-
-        protected StringBuilder getCsprojFiles(
+        /// <summary>
+        /// 获取csproj文件中的所有文件列表
+        /// </summary>
+        /// <param name="dbStructure"></param>
+        /// <returns></returns>
+        private StringBuilder getCsprojFiles(
             DBStructure dbStructure)
         {
             #region
@@ -111,8 +135,12 @@ namespace iCat.Generate.Service
             return files;
             #endregion
         }
-
-        protected StringBuilder getCsprojRefers(
+        /// <summary>
+        /// 获取工程文件中引用的项目列表
+        /// </summary>
+        /// <param name="allProjects"></param>
+        /// <returns></returns>
+        private StringBuilder getCsprojRefers(
             List<Project> allProjects)
         {
             #region
@@ -150,8 +178,13 @@ namespace iCat.Generate.Service
             return references;
             #endregion
         }
-
-        protected string[] getCsprojParams(
+        /// <summary>
+        /// 获取工程文件的参数
+        /// </summary>
+        /// <param name="files"></param>
+        /// <param name="refers"></param>
+        /// <returns></returns>
+        private string[] getCsprojParams(
             string files, string refers)
         {
             #region
@@ -164,7 +197,12 @@ namespace iCat.Generate.Service
             return csprojparams.ToArray<string>();
             #endregion
         }
-
+        /// <summary>
+        /// 保存工程文件
+        /// </summary>
+        /// <param name="dbStructure"></param>
+        /// <param name="allProjects"></param>
+        /// <param name="parentDir"></param>
         protected void SaveCsproj(
             DBStructure dbStructure,
             List<Project> allProjects,
@@ -183,11 +221,14 @@ namespace iCat.Generate.Service
                 this.getCsprojParams(files.ToString(), references.ToString())));
             #endregion
         }
-
+        /// <summary>
+        /// 保存程序集文件
+        /// </summary>
+        /// <param name="parentDir"></param>
         protected void SaveAssembly(
             string parentDir)
         {
-
+            #region
             string codedir = Path.Combine(
                 parentDir, this._Project._Name, "Properties");
 
@@ -195,6 +236,7 @@ namespace iCat.Generate.Service
 
             this.SaveFile(codedir, "AssemblyInfo.cs",
                 string.Format(Project._AssemblyTemplate, this._Project._Name, this._Project._Name, Guid.NewGuid()));
+            #endregion
         }
     }
 }

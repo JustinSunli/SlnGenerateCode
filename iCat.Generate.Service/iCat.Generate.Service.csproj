@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ColumnsService.cs" />
     <Compile Include="DBService.cs" />
+    <Compile Include="GenClientAppService.cs" />
     <Compile Include="GenFileIServiceService.cs" />
     <Compile Include="GenFileModelDataService.cs">
       <SubType>Code</SubType>

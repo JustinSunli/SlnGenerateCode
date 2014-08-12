@@ -136,7 +136,7 @@ namespace {2}
         /// <summary>
         /// 
         /// </summary>
-        public void Generate()
+        public void Generate(TableStructure table)
         {
             throw new NotImplementedException();
         }
