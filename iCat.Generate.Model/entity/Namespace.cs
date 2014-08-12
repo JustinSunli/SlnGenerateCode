@@ -18,6 +18,8 @@ namespace iCat.Generate.Model
             = "{0}.IService";
         private const string _modelFormat
             = "{0}.Model";
+        private const string _appFormat
+            = "{0}.Client";
 
         public const string KeyNameProjectName = "ProjectName";
         public const string KeyNameFoundation = "FoundationAssemblyName";
@@ -34,6 +36,7 @@ namespace iCat.Generate.Model
                 this._service = string.Format(_serviceFormat, _prefix);
                 this._iService = string.Format(_iserviceFormat, _prefix);
                 this._model = string.Format(_modelFormat, _prefix);
+                this._app = string.Format(_appFormat, _prefix);
             }
         }
 
@@ -86,6 +89,15 @@ namespace iCat.Generate.Model
         {
             get { return _model; }
         }
+
+        private string _app;
+
+        public string _App
+        {
+            get { return _app; }
+            set { _app = value; }
+        }
+        
 
         public static Namespace GetParameters()
         {

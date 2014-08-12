@@ -44,7 +44,9 @@ namespace iCat.Generate.Model
         DataAssigns,
         DataFields,
         SlnProjects,
-        SlnCompiles
+        SlnCompiles,
+        SpringDIDao,
+        SpringDIService
     }
 
 }
