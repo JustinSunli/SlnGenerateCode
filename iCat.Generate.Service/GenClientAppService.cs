@@ -28,6 +28,7 @@ namespace iCat.Generate.Service
 
         private string _diDao = "";
         private string _diService = "";
+        private string _sprintKeys = "";
         private Namespace _nSpace = null;
 
         public Project GenerateProject(
@@ -57,6 +58,7 @@ namespace iCat.Generate.Service
                     this.GetCode(table);
                     _diDao += _strIterations[0]._Returns.ToString();
                     _diService += _strIterations[1]._Returns.ToString();
+                    this._sprintKeys += _strIterations[2]._Returns.ToString();
                 }
             }
 
@@ -70,12 +72,14 @@ namespace iCat.Generate.Service
         {
             string codedir = Path.Combine(
                 parentDir, this._Project._Name);
+            //base.SaveCsproj(dbStructure, allProjects, parentDir);
             this.saveAppConfig(codedir);
-            this.saveDiConfig(dbStructure, codedir);
+            this.saveDiConfig(codedir);
+            this.saveDBConfig(dbStructure._Connection, codedir);
+            this.saveSpringKeys(codedir);
         }
 
-        private void saveDiConfig(
-            DBStructure dbStructure, 
+        private void saveDiConfig( 
             string parentDir)
         {
             string diconfig = string.Format(
@@ -83,6 +87,25 @@ namespace iCat.Generate.Service
                 _diDao,
                 _diService);
             base.SaveFile(parentDir, "DIConfig.xml", diconfig);
+        }
+        private void saveSpringKeys(
+            string parentDir)
+        {
+            string springkeys = string.Format(
+                SpringConfig.SpringKeysTemplate,
+                this._Project._Name,
+                this._sprintKeys);
+            base.SaveFile(parentDir, "SpringKeys.cs", springkeys);
+        }
+        private void saveDBConfig(
+            Connection connection,
+            string parentDir)
+        {
+            string dbconfig = string.Format(
+                SpringConfig.DBTemplate,
+                _nSpace._Prefix,
+                connection.connectionString);
+            base.SaveFile(parentDir, "DBConfig.xml", dbconfig);
         }
 
         private void saveAppConfig(string parentDir)
@@ -114,6 +137,11 @@ namespace iCat.Generate.Service
     <property name=""_{2}Dao"" ref=""{0}Dao""/>
   </object>",
                 _IterType = EnumStrIteration.SpringDIService
+            });
+            _strIterations.Add(new CodeIneration()
+            {
+                _Template = "\t\tpublic const string {0}Service = \"{1}Service\";",
+                _IterType = EnumStrIteration.SpringKeys
             });
             base._dlGetIterParams = new DLGetIterParams(getIterParams);
             this.AppendCodeInerations(table, _strIterations);
@@ -156,6 +184,12 @@ namespace iCat.Generate.Service
                         iterparams.Add(table._ParamNamePrefix);
                         iterparams.Add(this._nSpace._Prefix);
                         iterparams.Add(table._Name);
+                        break;
+                    }
+                case EnumStrIteration.SpringKeys:
+                    {
+                        iterparams.Add(table._Name);
+                        iterparams.Add(table._ParamNamePrefix);
                         break;
                     }
             }

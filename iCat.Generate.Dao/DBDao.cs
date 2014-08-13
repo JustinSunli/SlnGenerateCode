@@ -31,5 +31,13 @@ namespace iCat.Generate.Dao
                 connection.connectionString);
             #endregion
         }
+
+
+
+
+        public new string GetConnection()
+        {
+            return base.GetConnection();
+        }
     }
 }

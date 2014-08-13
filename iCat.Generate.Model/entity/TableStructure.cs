@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -58,6 +59,14 @@ namespace iCat.Generate.Model
             get { return _primaryKeys; }
             set { _primaryKeys = value; }
         }
+
+        private bool _hasIntPrimaryKey;
+
+        public bool _HasIntPrimaryKey
+        {
+            get { return _hasIntPrimaryKey; }
+            set { _hasIntPrimaryKey = value; }
+        }
         
 
         public TableStructure()
@@ -82,6 +91,32 @@ namespace iCat.Generate.Model
             }
             return prefix;
             #endregion
+        }
+
+        public bool CheckHasIntPrimaryKey()
+        {
+            bool has = false;
+
+            foreach (string col in _PrimaryKeys)
+            {
+                for (int i = 0; i < _columns.Tables[0].Rows.Count; i++)
+                {
+                    DataRow dr = _columns.Tables[0].Rows[i];
+                    if (col == dr[ColumnsData.name].ToString())
+                    {
+                        string xtype = dr[ColumnsData.xtype].ToString();
+                        if (xtype == "56" ||
+                            xtype == "127" ||
+                            xtype == "48" ||
+                            xtype == "52")
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return has;
         }
     }
 }

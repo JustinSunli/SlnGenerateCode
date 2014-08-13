@@ -34,22 +34,27 @@ namespace iCat.Generate.Service
             (_TableDao as IConnect).SetConnection(connection);
             (_ColumnsDao as IConnect).SetConnection(connection);
             DBStructure dbstructure = new DBStructure();
-
+            dbstructure._Connection = connection;
             TablesData tablesdata = _TableDao.Select();
             dbstructure._TablesData = tablesdata;
             foreach (DataRow dr
                 in tablesdata.Tables[0].Rows)
             {
                 string tablename = dr[TablesData.name].ToString();
-                dbstructure._Tables.Add(new TableStructure()
+                TableStructure table = new TableStructure()
                 {
                     _Name = tablename,
                     _Columns = _ColumnsDao.Select(tablename),
                     _PrimaryKeys = _ColumnsDao.SelectPrimaryKeys(tablename)
-                });
+                };
+                table._HasIntPrimaryKey = table.CheckHasIntPrimaryKey();
+
+                dbstructure._Tables.Add(table);
             }
             return dbstructure;
             #endregion
         }
+
+        
     }
 }

@@ -18,10 +18,17 @@ namespace {2}
 {{
     public interface I{3}Dao
     {{
+        /// <summary>
+        /// 保存数据
+        /// </summary>
+        /// <param name=""{4}Data"">欲保存的数据集</param>
         void Save({3}Data {4}Data);
-
-        int GetMaxId();
-
+        {5}
+        /// <summary>
+        /// 检索单表
+        /// </summary>
+        /// <param name=""condition"">查询条件</param>
+        /// <returns>{3}的数据集</returns>
         {3}Data SelectSingleT(QueryCondition condition); 
     }}
 }}";
@@ -37,8 +44,23 @@ namespace {2}
             args.Add(base._Project._Name);
             args.Add(table._Name);
             args.Add(table._ParamNamePrefix);
+            args.Add(getMaxidCode(table._HasIntPrimaryKey));
             all = string.Format(_fileTemplate, args.ToArray<string>());
             return all;
+            #endregion
+        }
+
+        private string getMaxidCode(
+            bool hasIntKey)
+        {
+            #region
+            string temp = @"/// <summary>
+        /// 获取最大编号
+        /// </summary>
+        /// <returns>最大编号</returns>
+        int GetMaxId();";
+            temp = (hasIntKey) ? temp : "";
+            return temp;
             #endregion
         }
 

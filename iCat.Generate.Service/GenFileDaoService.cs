@@ -19,14 +19,20 @@ namespace {2}
 {{
     public class {3}Dao : BaseDao, I{3}Dao
     {{
+        /// <summary>
+        /// 保存数据
+        /// </summary>
+        /// <param name=""{4}Data"">欲保存的数据集</param>
         public void Save({3}Data {4}Data)
         {{
             base.Save({4}Data);
         }}
-        public int GetMaxId()
-        {{
-            return base.GetMaxId<{3}Data>();
-        }}
+        {5}
+        /// <summary>
+        /// 检索单表
+        /// </summary>
+        /// <param name=""condition"">查询条件</param>
+        /// <returns>{3}的数据集</returns>
         public {3}Data SelectSingleT(
             QueryCondition condition)
         {{
@@ -46,9 +52,25 @@ namespace {2}
             args.Add(this._Project._Name);
             args.Add(table._Name);
             args.Add(table._ParamNamePrefix);
+            args.Add(this.getMaxidCode(table));
             all = string.Format(_fileTemplate, args.ToArray<string>());
             return all;
             #endregion
+        }
+
+        private string getMaxidCode(
+            TableStructure table)
+        {
+            string temp = @"/// <summary>
+        /// 获取最大编号
+        /// </summary>
+        /// <returns>最大编号</returns>
+        public int GetMaxId()
+        {{
+            return base.GetMaxId<{0}Data>();
+        }}";
+            temp = (table._HasIntPrimaryKey) ? string.Format(temp, table._Name) : "";
+            return temp;
         }
 
         private string getUsing(

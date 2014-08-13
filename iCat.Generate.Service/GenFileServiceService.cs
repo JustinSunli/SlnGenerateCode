@@ -26,8 +26,8 @@ namespace {2}
         /// <summary>
         /// 添加[{4}]数据到数据库（有源、单实体）。
         /// </summary>
-        /// <param name=""{4}Data""></param>
-        /// <param name=""{4}""></param>
+        /// <param name=""{4}Data"">源数据集</param>
+        /// <param name=""{4}"">欲添加的实体</param>
         public void Add(
             ref {3}Data {4}Data,
             Entity{3} {4})
@@ -40,8 +40,8 @@ namespace {2}
         /// <summary>
         /// 添加[{4}]数据到数据库（有源、多实体）。
         /// </summary>
-        /// <param name=""{4}Data""></param>
-        /// <param name=""{4}s""></param>
+        /// <param name=""{4}Data"">源数据集</param>
+        /// <param name=""{4}s"">欲添加的多实体</param>
         public void Add(
             ref {4}Data {4}Data,
             IList<Entity{3}> {4}s)
@@ -54,8 +54,8 @@ namespace {2}
         /// <summary>
         /// 添加[{4}]数据到数据库（无源、单实体）。
         /// </summary>
-        /// <param name=""{4}""></param>
-        /// <returns></returns>
+        /// <param name=""{4}"">单实体</param>
+        /// <returns>保存后的数据集</returns>
         public TUserData Add(
             Entity{3} {4})
         {{
@@ -68,8 +68,8 @@ namespace {2}
         /// <summary>
         /// 添加[{4}]数据到数据库（无源、多实体）。
         /// </summary>
-        /// <param name=""{4}s""></param>
-        /// <returns></returns>
+        /// <param name=""{4}s"">多实体</param>
+        /// <returns>保存后的数据集</returns>
         public {3}Data Add(
             IList<Entity{3}> {4}s)
         {{
@@ -83,10 +83,10 @@ namespace {2}
 
         #region 编辑操作
         /// <summary>
-        /// 
+        /// 编辑[{4}]数据到数据库（有源、单实体）
         /// </summary>
-        /// <param name=""{4}Data""></param>
-        /// <param name=""{4}""></param>
+        /// <param name=""{4}Data"">源数据集</param>
+        /// <param name=""{4}"">实体</param>
         public void Edit(
             ref {3}Data {4}Data,
             Entity{3} {4})
@@ -100,10 +100,10 @@ namespace {2}
 
         #region 删除操作
         /// <summary>
-        /// 
+        /// 删除[{4}]数据集中的数据
         /// </summary>
-        /// <param name=""{4}Data""></param>
-        /// <param name=""{4}""></param>
+        /// <param name=""{4}Data"">源数据集</param>
+        /// <param name=""{4}"">要删除的实体</param>
         public void Delete(
             ref {3}Data {4}Data,
             Entity{3} {4})
@@ -114,19 +114,31 @@ namespace {2}
             #endregion
         }}
         #endregion
-
+        
+        {6}
+    }}
+}}";
+        private string getMaxidCode(
+            TableStructure table)
+        {
+            #region
+            string temp = @"#region 检索操作
         /// <summary>
-        /// 
+        /// 获取表[{0}]的最大编号
         /// </summary>
-        /// <returns></returns>
+        /// <returns>最大编号</returns>
         public int GetMaxId()
         {{
             #region
-            return _{3}Dao.GetMaxId();
+            return _{0}Dao.GetMaxId();
             #endregion
         }}
-    }}
-}}";
+        #endregion";
+            temp = (table._HasIntPrimaryKey) ? string.Format(temp, table._Name) : "";
+            return temp;
+            #endregion
+        }
+
         //4为首字母小写的表名，3为原始表名，
         public string GetCode(
             TableStructure table)
@@ -140,6 +152,7 @@ namespace {2}
             args.Add(table._Name);
             args.Add(table._ParamNamePrefix);
             args.Add(table._NameLower);
+            args.Add(getMaxidCode(table));
             all = string.Format(_fileTemplate, args.ToArray<string>());
             return all;
             #endregion

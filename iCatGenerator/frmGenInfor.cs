@@ -40,6 +40,7 @@ namespace iCatGenerator
                     frmMain._DBStructure, 
                     path);
                 ExtMessage.Show(string.Format("成功生成到目录{0}！", path));
+                this.Close();
             }
         }
 
@@ -96,7 +97,7 @@ namespace iCatGenerator
 
         private void frmGenInfor_Load(object sender, EventArgs e)
         {
-            _slnService = (ISlnCreatorService)SpringManager.GetObject("slnGenService");
+            _slnService = (ISlnCreatorService)SpringManager.GetObject(SpringKeys.SlnGenService);
             fillTablesIsGen(frmMain._DBStructure, frmMain._SelectTables);
             string error = "警告：当前所选表中无关键字的数据表有{0} !";
             int isgentables = 0;

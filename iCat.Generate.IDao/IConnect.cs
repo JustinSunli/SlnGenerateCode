@@ -9,5 +9,7 @@ namespace iCat.Generate.IDao
     public interface IConnect
     {
         void SetConnection(Connection connection);
+
+        string GetConnection();
     }
 }

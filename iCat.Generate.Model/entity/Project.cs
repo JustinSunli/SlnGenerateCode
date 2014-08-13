@@ -145,6 +145,5 @@ using System.Runtime.InteropServices;
             get { return _referenceNSpace; }
             set { _referenceNSpace = value; }
         }
-        
     }
 }

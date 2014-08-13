@@ -77,7 +77,7 @@ namespace iCatGenerator
         {
             #region
             SpringManager.Init();
-            _dbService = (IDBService)SpringManager.GetObject("dbService");
+            _dbService = (IDBService)SpringManager.GetObject(SpringKeys.DBService);
             ConnectActionCollection.Init();
             _Copyright = Copyright.GetParameters();
             _NSpace = Namespace.GetParameters();

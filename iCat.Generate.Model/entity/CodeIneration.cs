@@ -46,7 +46,8 @@ namespace iCat.Generate.Model
         SlnProjects,
         SlnCompiles,
         SpringDIDao,
-        SpringDIService
+        SpringDIService,
+        SpringKeys
     }
 
 }

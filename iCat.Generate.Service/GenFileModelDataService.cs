@@ -52,7 +52,7 @@ namespace {2}
             #endregion
         }}
         /// <summary>
-        /// 
+        /// 将实体赋予数据行。
         /// </summary>
         /// <param name=""currentRow""></param>
         /// <param name=""{4}""></param>
@@ -64,7 +64,7 @@ namespace {2}
             #endregion
         }}
         /// <summary>
-        /// 接口：添加实体到缓存
+        /// 接口：添加实体到缓存。
         /// </summary>
         /// <param name=""{4}""></param>
         public void AddCache(
@@ -81,7 +81,7 @@ namespace {2}
             #endregion
         }}
         /// <summary>
-        /// 接口：添加多实体到缓存
+        /// 接口：添加多实体到缓存。
         /// </summary>
         /// <param name=""{4}s""></param>
         public void AddCache(
@@ -93,7 +93,7 @@ namespace {2}
             #endregion
         }}
         /// <summary>
-        /// 
+        /// 接口：编辑单实体到缓存。
         /// </summary>
         /// <param name=""{4}""></param>
         public void EditCache(
@@ -111,7 +111,7 @@ namespace {2}
             #endregion
         }}
         /// <summary>
-        /// 
+        /// 接口：从缓存中删除实体。
         /// </summary>
         /// <param name=""{4}""></param>
         public void DeleteCache(
@@ -130,7 +130,7 @@ namespace {2}
             #endregion
         }}
         /// <summary>
-        /// 
+        /// 根据实体查找数据行，用于编辑或删除缓存。
         /// </summary>
         /// <param name=""{4}""></param>
         /// <returns></returns>
@@ -143,7 +143,7 @@ namespace {2}
             #endregion
         }}
         /// <summary>
-        /// 
+        /// 从实体中获取关键字参数
         /// </summary>
         /// <param name=""{4}""></param>
         /// <returns></returns>

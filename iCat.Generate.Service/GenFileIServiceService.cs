@@ -66,11 +66,7 @@ namespace {2}
         void Delete(
             ref {3}Data {4}Data,
             Entity{3} {4});
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        int GetMaxId();
+        {5}
     }}
 }}";
         //4为首字母小写的表名，3为原始表名，
@@ -85,8 +81,22 @@ namespace {2}
             args.Add(base._Project._Name);
             args.Add(table._Name);
             args.Add(table._ParamNamePrefix);
+            args.Add(getMaxidCode(table._HasIntPrimaryKey));
             all = string.Format(_fileTemplate, args.ToArray<string>());
             return all;
+            #endregion
+        }
+        private string getMaxidCode(
+            bool hasIntKey)
+        {
+            #region
+            string temp = @"/// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        int GetMaxId();";
+            temp = (hasIntKey) ? temp : "";
+            return temp;
             #endregion
         }
 

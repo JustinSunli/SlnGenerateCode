@@ -22,7 +22,10 @@ namespace {2}
     public class Entity{3} : IEntity
     {{
 {4}
-
+        /// <summary>
+        /// 从数据集中根据主键获取实体时（接口方法）
+        /// </summary>
+        /// <param name=""dr""></param>
         public void Get(DataRow dr)
         {{
 {5}

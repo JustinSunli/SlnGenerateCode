@@ -7,12 +7,28 @@ namespace iCat.Generate.Model
 {
     public class SpringConfig
     {
+        public const string SpringKeysTemplate = @"using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace {0}
+{{
+    public class SpringKeys
+    {{
+{1}
+    }}
+}}";
         public const string DITemplate = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
 <objects xmlns=""http://www.springframework.net""
          xmlns:db=""http://www.springframework.net/database"">
+<!--spring dao starting-->
 {0}
+<!--spring dao end-->
 
+<!--spring service starting-->
 {1}
+<!--spring service end-->
 </objects>";
 
         public const string AppconfigTemplate = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
@@ -37,12 +53,12 @@ namespace iCat.Generate.Model
          xmlns:db=""http://www.springframework.net/database""
          xmlns:tx=""http://www.springframework.net/tx"">
 <!--default connect database config-->
-  <db:provider id=""dbProvider_dbsystem""
+  <db:provider id=""dbProvider_{0}""
                 provider=""SqlServer-2.0""
-                connectionString=""Data Source=.;Initial Catalog=DevOrder;Persist Security Info=True;User ID=sa;Password=longhope""/>
+                connectionString=""{1}""/>
   
   <object id=""adoTemplate"" type=""Spring.Data.Core.AdoTemplate, Spring.Data"">
-    <property name=""DbProvider"" ref=""dbProvider_dbsystem""/>
+    <property name=""DbProvider"" ref=""dbProvider_{0}""/>
     <property name=""DataReaderWrapperType"" value=""Spring.Data.Support.NullMappingDataReader, Spring.Data""/>
   </object>
 

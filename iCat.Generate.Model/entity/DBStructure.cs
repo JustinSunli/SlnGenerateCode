@@ -32,8 +32,18 @@ namespace iCat.Generate.Model
         }
         
 
+        private Connection _connection;
+
+        public Connection _Connection
+        {
+            get { return _connection; }
+            set { _connection = value; }
+        }
+
         public DBStructure()
         {
+            if (_connection == null)
+                this._connection = new Connection();
             if (_tables == null)
                 this._tables = new List<TableStructure>();
         }

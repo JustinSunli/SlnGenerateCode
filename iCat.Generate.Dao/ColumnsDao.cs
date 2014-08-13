@@ -65,5 +65,11 @@ where a.object_id=object_id('{0}')", tableName);
                 keys.Add(dr["COLUMN_NAME"].ToString());
             return keys;
         }
+
+
+        public new string GetConnection()
+        {
+            return base.GetConnection();
+        }
     }
 }

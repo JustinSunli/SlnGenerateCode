@@ -24,6 +24,11 @@ namespace Foundation.Core
                         typeName = "Int32";
                         break;
                     }
+                case "52":
+                    {
+                        typeName = "Int16";
+                        break;
+                    }
                 case "127":
                     {
                         typeName = "Int64";
@@ -76,6 +81,11 @@ namespace Foundation.Core
             switch (typeId)
             {
                 case "56":
+                    {
+                        typeName = "int";
+                        break;
+                    }
+                case "52":
                     {
                         typeName = "int";
                         break;
@@ -137,6 +147,11 @@ namespace Foundation.Core
                         break;
                     }
                 case "127":
+                    {
+                        typeName = "int";
+                        break;
+                    }
+                case "52":
                     {
                         typeName = "int";
                         break;

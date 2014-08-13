@@ -26,5 +26,9 @@ namespace iCat.Generate.Dao
             #endregion
         }
 
+        public new string GetConnection()
+        {
+            return base.GetConnection();
+        }
     }
 }

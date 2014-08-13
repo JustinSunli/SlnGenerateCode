@@ -168,6 +168,9 @@ namespace CustomSpring.Core.Dao
             base.AdoTemplate = adotemplate;
             #endregion
         }
-
+        protected string GetConnection()
+        {
+            return base.AdoTemplate.DbProvider.ConnectionString;
+        }
     }
 }
