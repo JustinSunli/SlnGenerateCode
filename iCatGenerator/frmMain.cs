@@ -104,6 +104,7 @@ namespace iCatGenerator
             notempty.ErrorText = "该项不能为空！";
 
             dxValidationProvider1.SetValidationRule(this.teSlnName, notempty);
+            dxValidationProvider1.SetValidationRule(this.deCreateDate, notempty);
             dxValidationProvider1.SetValidationRule(this.teCreator, notempty);
             dxValidationProvider1.SetValidationRule(this.teCopyright, notempty);
             dxValidationProvider1.SetValidationRule(this.lueditDBList, notempty);
@@ -296,6 +297,18 @@ namespace iCatGenerator
         {
             #region
             lueditDBList_EditValueChanged(null, null);
+            #endregion
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void sbDBConifg_Click(
+            object sender, EventArgs e)
+        {
+            #region
+            (new frmSetConnect()).ShowDialog();
             #endregion
         }
     }

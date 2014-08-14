@@ -126,6 +126,7 @@
             this.sbDBConifg.Size = new System.Drawing.Size(145, 26);
             this.sbDBConifg.TabIndex = 2;
             this.sbDBConifg.Text = "配置数据库";
+            this.sbDBConifg.Click += new System.EventHandler(this.sbDBConifg_Click);
             // 
             // labelControl1
             // 
