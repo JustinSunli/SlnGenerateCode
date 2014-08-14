@@ -54,7 +54,7 @@
             this.repositoryItemTextEdit1,
             this.repositoryItemTextEdit2});
             this.gColConnections.ShowOnlyPredefinedDetails = true;
-            this.gColConnections.Size = new System.Drawing.Size(671, 134);
+            this.gColConnections.Size = new System.Drawing.Size(611, 132);
             this.gColConnections.TabIndex = 0;
             this.gColConnections.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -82,7 +82,7 @@
             this.discribe.OptionsFilter.AllowFilter = false;
             this.discribe.Visible = true;
             this.discribe.VisibleIndex = 0;
-            this.discribe.Width = 156;
+            this.discribe.Width = 120;
             // 
             // repositoryItemTextEdit1
             // 
@@ -100,7 +100,7 @@
             this.connectionString.OptionsFilter.AllowFilter = false;
             this.connectionString.Visible = true;
             this.connectionString.VisibleIndex = 1;
-            this.connectionString.Width = 497;
+            this.connectionString.Width = 473;
             // 
             // repositoryItemTextEdit2
             // 
@@ -111,9 +111,10 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslSaveInfor});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 134);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 132);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(671, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(611, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -125,9 +126,9 @@
             // 
             // frmSetConnect
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 156);
+            this.ClientSize = new System.Drawing.Size(611, 154);
             this.Controls.Add(this.gColConnections);
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

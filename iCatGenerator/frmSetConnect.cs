@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraGrid.Views.Base;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Base;
 using Foundation.Core;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace iCatGenerator
 {
-    public partial class frmSetConnect : Form
+    public partial class frmSetConnect : XtraForm
     {
         public frmSetConnect()
         {
