@@ -12,4 +12,10 @@
     <discribe>17局综合办公系统测试库</discribe>
     <connectionString>server=192.168.0.236;database=TY_QBDB;user id=sa;password=longhope;Pooling=true;Min Pool Size=10;Max Pool Size=50;Connection Lifetime=30;Connection Timeout=30;</connectionString>
   </Connection>
+  <Connection>
+    <rid>3</rid>
+    <provider>SqlServer-2.0</provider>
+    <discribe>17局综合办公系统开发库</discribe>
+    <connectionString>server=192.168.0.236;database=TY_QBDB;user id=sa;password=longhope;Pooling=true;Min Pool Size=10;Max Pool Size=50;Connection Lifetime=30;Connection Timeout=30;</connectionString>
+  </Connection>
 </TConnection>
