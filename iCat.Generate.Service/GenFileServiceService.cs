@@ -43,7 +43,7 @@ namespace {2}
         /// <param name=""{4}Data"">源数据集</param>
         /// <param name=""{4}s"">欲添加的多实体</param>
         public void Add(
-            ref {4}Data {4}Data,
+            ref {3}Data {4}Data,
             IList<Entity{3}> {4}s)
         {{
             #region
@@ -56,7 +56,7 @@ namespace {2}
         /// </summary>
         /// <param name=""{4}"">单实体</param>
         /// <returns>保存后的数据集</returns>
-        public TUserData Add(
+        public {3}Data Add(
             Entity{3} {4})
         {{
             #region
@@ -93,7 +93,7 @@ namespace {2}
         {{
             #region
             {4}Data.EditCache({4});
-            _{3}Dao.Save({3}Data);
+            _{3}Dao.Save({4}Data);
             #endregion
         }}
         #endregion

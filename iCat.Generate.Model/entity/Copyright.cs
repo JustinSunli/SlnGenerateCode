@@ -8,6 +8,12 @@ namespace iCat.Generate.Model
 {
     public class Copyright
     {
+        /*
+***版权声明：本生成器版权归【李峰艳】
+***         所有，若复制本软件或利用
+***         本软件进行代码生成时未经
+***         本人同意，为侵权行为。
+         **/
         private const string _template = @"/****************************************
 ***生成器版本：{0}
 ***创建人：{1}
@@ -16,10 +22,6 @@ namespace iCat.Generate.Model
 ***友情提示：本文件为生成器自动生成，
 ***         如发现任何编译和运行时的
 ***         错误，请联系QQ：330669393。
-***版权声明：本生成器版权归【李峰艳】
-***         所有，若复制本软件或利用
-***         本软件进行代码生成时未经
-***         本人同意，为侵权行为。
 *****************************************/";
         public const string KeyNameCreator = "Creator";
         public const string KeyNameCompany = "Company";

@@ -12,7 +12,8 @@ namespace CustomSpring.Core
         private static IApplicationContext _springContext = null;
         public static void Init()
         {
-            _springContext = ContextRegistry.GetContext();
+            if (_springContext == null)
+                _springContext = ContextRegistry.GetContext();
         }
 
         public static object GetObject(string id)

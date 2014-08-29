@@ -26,8 +26,8 @@ namespace {2}
         /// <param name=""{4}Data""></param>
         /// <param name=""{4}""></param>
         void Add(
-            ref TUserData {4}Data,
-            EntityTUser {4});
+            ref {3}Data {4}Data,
+            Entity{3} {4});
         /// <summary>
         /// 
         /// </summary>
