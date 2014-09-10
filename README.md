@@ -10,7 +10,7 @@ SlnGenerateCode
 <br/>4.框架：devexpress 10.2、spring.net
 <br/>5.入口项目名：iCatGenerater
 <br/>
-<br/>6主要功能有如下：
+<br/>6.主要功能有如下：
 <br/>1>.可设定存放近期使用的数据库连接。
 <br/>2>.界面任何状态下不会产生假死（线程阻塞）现象。
 <br/>3>.生成的代码层有Dao、IDao、Model、Service、IService的全部代码和Client（应用层）部分代码。
