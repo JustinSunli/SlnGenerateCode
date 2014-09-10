@@ -1,7 +1,7 @@
 SlnGenerateCode
 =======================================================================================
 
-基于spring.net与DevExpress的代码生成器
+基于数据库的代码生成器
 
 ### 版本
 
@@ -33,3 +33,4 @@ SlnGenerateCode
     - 可设定存放近期使用的数据库连接。
     - 界面任何状态下不会产生假死（线程阻塞）现象。
     - 生成的代码层有Dao、IDao、Model、Service、IService的全部代码和Client（应用层）部分代码。
+    - 当前支持SQL Server，可以平滑扩展到Oracle、mysql、Access等类型数据库。
