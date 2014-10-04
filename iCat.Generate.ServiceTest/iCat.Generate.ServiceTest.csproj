@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCMDService.cs" />
     <Compile Include="TestServiceColumns.cs" />
     <Compile Include="TestServiceFileIervice.cs" />
     <Compile Include="TestServiceSln.cs" />
@@ -57,9 +58,21 @@
     <Compile Include="TestServiceFileDao.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CustomSpring.Core\CustomSpring.Core.csproj">
+      <Project>{4de64906-b976-4de5-a7d3-35772dd086c1}</Project>
+      <Name>CustomSpring.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Foundation.Core\Foundation.Core.csproj">
       <Project>{398b7fee-94cd-4f66-a5b4-180f8e443c83}</Project>
       <Name>Foundation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iCat.Generate.Dao\iCat.Generate.Dao.csproj">
+      <Project>{c5be938c-7450-4bee-82fb-b70c89e716da}</Project>
+      <Name>iCat.Generate.Dao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iCat.Generate.IDao\iCat.Generate.IDao.csproj">
+      <Project>{841981b4-02c3-4307-abad-4085b2504e93}</Project>
+      <Name>iCat.Generate.IDao</Name>
     </ProjectReference>
     <ProjectReference Include="..\iCat.Generate.IService\iCat.Generate.IService.csproj">
       <Project>{a516e39d-7ea6-45a9-a978-1ec39a78dac6}</Project>

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICmdService.cs" />
     <Compile Include="IColumnsService.cs" />
     <Compile Include="IDBService.cs" />
     <Compile Include="IFileCreatorService.cs" />

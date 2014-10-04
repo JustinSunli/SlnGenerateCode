@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CmdService.cs" />
     <Compile Include="ColumnsService.cs" />
     <Compile Include="DBService.cs" />
     <Compile Include="GenClientAppService.cs" />

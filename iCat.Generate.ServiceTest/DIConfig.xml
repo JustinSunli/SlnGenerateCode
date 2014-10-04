@@ -21,8 +21,7 @@
   <object id="fileModelDataService" type="iCat.Generate.Service.GenFileModelDataService, iCat.Generate.Service"/>
   <object id="fileServiceService" type="iCat.Generate.Service.GenFileServiceService, iCat.Generate.Service"/>
   <object id="fileIServiceService" type="iCat.Generate.Service.GenFileIServiceService, iCat.Generate.Service"/>
-  <object id="slnGenService" type="iCat.Generate.Service.GenSlnService, iCat.Generate.Service">
-    <property name="_ColumnsDao" ref="columnsDao"/>
-    <property name="_TablesDao" ref="tableDao"/>
-  </object>
+  <object id="slnGenService" type="iCat.Generate.Service.GenSlnService, iCat.Generate.Service" />
+  <object id="cmdService" type="iCat.Generate.Service.CmdService, iCat.Generate.Service" />
+
 </objects>
