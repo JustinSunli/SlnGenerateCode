@@ -13,6 +13,12 @@ namespace iCat.Generate.Service
     public class GenFileModelDataService : GenFileServiceBase, IFileCreatorService
     {
         #region
+        /*
+        /// <summary>
+        /// 表名。
+        /// </summary>
+        public const string {3} = ""{3}"";
+         * */
         private const string _fileTemplate = @"
 {0}
 {1}
@@ -25,14 +31,6 @@ namespace {2}
 {{
     public class {3}Data : DataLibBase
     {{
-        #region table structure
-{6}
-        /// <summary>
-        /// 表名。
-        /// </summary>
-        public const string {3} = ""{3}"";
-        #endregion
-
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -44,8 +42,8 @@ namespace {2}
         {{
             #region
             DataTable dt = new DataTable({3});
-{7}
-            dt.PrimaryKey = new DataColumn[{9}] {{ {10} }};
+{6}
+            dt.PrimaryKey = new DataColumn[{8}] {{ {9} }};
             dt.TableName = {3};
             this.Tables.Add(dt);
             this.DataSetName = ""T{3}"";
@@ -60,7 +58,7 @@ namespace {2}
             DataRow currentRow, Entity{3} {4})
         {{
             #region
-{8}
+{7}
             #endregion
         }}
         /// <summary>
@@ -174,7 +172,7 @@ namespace {2}
             args.Add(table._Name);
             args.Add(table._ParamNamePrefix);
             args.Add(table._NameLower);
-            args.Add(this._strIterations[2]._Returns.ToString());
+            //args.Add(this._strIterations[2]._Returns.ToString());
             args.Add(this._strIterations[0]._Returns.ToString());
             args.Add(this._strIterations[1]._Returns.ToString());
             args.Add(table._PrimaryKeys.Count.ToString());

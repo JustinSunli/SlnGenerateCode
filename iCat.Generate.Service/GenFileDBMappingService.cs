@@ -8,6 +8,24 @@ namespace iCat.Generate.Service
 {
     class GenFileDBMappingService : GenFileServiceBase, IFileCreatorService
     {
+        private const string _fileTemplate = @"
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+
+namespace {0}
+{{
+    public class {1}Mapping
+    {{
+{2}
+        /// <summary>
+        /// 表名。
+        /// </summary>
+        public const string {1} = ""{1}"";
+    }}
+}}";
+
         public void Generate(
             Model.TableStructure table)
         {
