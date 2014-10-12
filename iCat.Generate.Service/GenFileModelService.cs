@@ -57,6 +57,7 @@ namespace {2}
             #region
             IList<string> usings = new List<string>();
             usings.Add(nSpace._FoundationCore.ToString());
+            usings.Add(nSpace._DBMapping);
             base._Project._ReferenceNSpace = usings;
             return base.StrcatUsing(usings);
             #endregion
@@ -74,7 +75,7 @@ namespace {2}
             _strIterations = new List<CodeIneration>();
             _strIterations.Add(new CodeIneration()
             {
-                _Template = "\t\t\tthis.{0} = dr[{1}Data.{0}].ToString();",
+                _Template = "\t\t\tthis.{0} = dr[{1}Mapping.{0}].ToString();",
                 _IterType = EnumStrIteration.EntityAssigns
             });
             _strIterations.Add(new CodeIneration()
