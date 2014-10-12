@@ -134,6 +134,14 @@
       <Project>{398b7fee-94cd-4f66-a5b4-180f8e443c83}</Project>
       <Name>Foundation.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\iCat.Generate.Dao\iCat.Generate.Dao.csproj">
+      <Project>{c5be938c-7450-4bee-82fb-b70c89e716da}</Project>
+      <Name>iCat.Generate.Dao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iCat.Generate.IDao\iCat.Generate.IDao.csproj">
+      <Project>{841981b4-02c3-4307-abad-4085b2504e93}</Project>
+      <Name>iCat.Generate.IDao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\iCat.Generate.IService\iCat.Generate.IService.csproj">
       <Project>{a516e39d-7ea6-45a9-a978-1ec39a78dac6}</Project>
       <Name>iCat.Generate.IService</Name>
@@ -141,6 +149,10 @@
     <ProjectReference Include="..\iCat.Generate.Model\iCat.Generate.Model.csproj">
       <Project>{cc9436b2-96d3-42b7-ae03-aaf3a37b7d78}</Project>
       <Name>iCat.Generate.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iCat.Generate.Service\iCat.Generate.Service.csproj">
+      <Project>{060769cd-d844-41f6-9742-168a1a8f8bde}</Project>
+      <Name>iCat.Generate.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

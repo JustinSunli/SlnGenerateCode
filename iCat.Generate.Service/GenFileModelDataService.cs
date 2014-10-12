@@ -41,10 +41,10 @@ namespace {2}
         private void buildData()
         {{
             #region
-            DataTable dt = new DataTable({3});
+            DataTable dt = new DataTable({3}Mapping.{3});
 {6}
             dt.PrimaryKey = new DataColumn[{8}] {{ {9} }};
-            dt.TableName = {3};
+            dt.TableName = {3}Mapping.{3};
             this.Tables.Add(dt);
             this.DataSetName = ""T{3}"";
             #endregion
@@ -150,7 +150,7 @@ namespace {2}
         {{
             #region
             IList<object> dbparams = new List<object>();
-{11}
+{10}
             return dbparams.ToArray<object>();
             #endregion
         }}
@@ -172,11 +172,10 @@ namespace {2}
             args.Add(table._Name);
             args.Add(table._ParamNamePrefix);
             args.Add(table._NameLower);
-            //args.Add(this._strIterations[2]._Returns.ToString());
             args.Add(this._strIterations[0]._Returns.ToString());
             args.Add(this._strIterations[1]._Returns.ToString());
             args.Add(table._PrimaryKeys.Count.ToString());
-            args.Add(this.getDataTableKeys(table._PrimaryKeys));
+            args.Add(this.getDataTableKeys(table));
             args.Add(this.getPrimaryKeysAssign(table));
 
             all = string.Format(_fileTemplate, args.ToArray<string>());
@@ -184,15 +183,14 @@ namespace {2}
             #endregion
         }
 
-        private string getDataTableKeys(
-            List<string> keys)
+        private string getDataTableKeys(TableStructure table)
         {
             #region
-            string format = "dt.Columns[{0}],";
+            string format = "dt.Columns[{1}Mapping.{0}],";
             string allkeys = "";
-            foreach (string key in keys)
-                allkeys += string.Format(format, key);
-            if (keys.Count > 0)
+            foreach (string key in table._PrimaryKeys)
+                allkeys += string.Format(format, key, table._Name);
+            if (table._PrimaryKeys.Count > 0)
                 allkeys = allkeys.Remove(allkeys.Length - 1, 1);
             return allkeys;
             #endregion
@@ -226,6 +224,7 @@ namespace {2}
             #region
             IList<string> usings = new List<string>();
             usings.Add(nSpace._FoundationCore.ToString());
+            usings.Add(nSpace._DBMapping);
             base._Project._ReferenceNSpace = usings;
             return base.StrcatUsing(usings);
             #endregion
@@ -243,14 +242,15 @@ namespace {2}
             _strIterations = new List<CodeIneration>();
             _strIterations.Add(new CodeIneration()
             {
-                _Template = "\t\t\tdt.Columns.Add({0}, typeof(System.{1}));",
+                _Template = "\t\t\tdt.Columns.Add({2}Mapping.{0}, typeof(System.{1}));",
                 _IterType = EnumStrIteration.DataColumnsAdd
             });
             _strIterations.Add(new CodeIneration()
             {
-                _Template = "\t\tthis.Assign(currentRow, {0}, {1}.{0});",
+                _Template = "\t\t\tthis.Assign(currentRow, {2}Mapping.{0}, {1}.{0});",
                 _IterType = EnumStrIteration.DataAssigns
             });
+            /*
             _strIterations.Add(new CodeIneration()
             {
                 _Template = "\t\t/// <summary>\r\n" +
@@ -259,6 +259,7 @@ namespace {2}
                             "\t\tpublic const string {1} = \"{1}\";",
                 _IterType = EnumStrIteration.DataFields
             });
+             * */
             base._dlGetIterParams = new DLGetIterParams(getIterParams);
             base.AppendCodeInerationsByTable(table, _strIterations);
             #endregion
@@ -279,18 +280,14 @@ namespace {2}
                         iterparams.Add(
                             XType.getCSharpTypeName(
                             dr[ColumnsData.xtype].ToString()));
+                        iterparams.Add(table._Name);
                         break;
                     }
                 case EnumStrIteration.DataAssigns:
                     {
                         iterparams.Add(dr[ColumnsData.name]);
                         iterparams.Add(table._ParamNamePrefix);
-                        break;
-                    }
-                case EnumStrIteration.DataFields:
-                    {
-                        iterparams.Add(dr[ColumnsData.value]);
-                        iterparams.Add(dr[ColumnsData.name]);
+                        iterparams.Add(table._Name);
                         break;
                     }
             }

@@ -178,6 +178,7 @@ EndProject",
                     new List<IFileCreatorService>();
 
                 _fileServices.Add(new GenFileDaoService());
+                _fileServices.Add(new GenFileDBMappingService());
                 _fileServices.Add(new GenFileIDaoService());
                 _fileServices.Add(new GenFileIServiceService());
                 _fileServices.Add(new GenFileModelService());

@@ -10,6 +10,8 @@ namespace iCat.Generate.Model
     {
         private const string _daoFormat
             = "{0}.Dao";
+        private const string _dbMappingFormat
+            = "{0}.DBMapping";
         private const string _idaoFormat
             = "{0}.IDao";
         private const string _serviceFormat
@@ -32,6 +34,7 @@ namespace iCat.Generate.Model
             set { 
                 _prefix = value;
                 this._dao = string.Format(_daoFormat, _prefix);
+                this._dbMapping = string.Format(_dbMappingFormat, _prefix);
                 this._iDao = string.Format(_idaoFormat, _prefix);
                 this._service = string.Format(_serviceFormat, _prefix);
                 this._iService = string.Format(_iserviceFormat, _prefix);
@@ -54,6 +57,13 @@ namespace iCat.Generate.Model
         {
             get { return _customSpring; }
             set { _customSpring = value; }
+        }
+        private string _dbMapping;
+
+        public string _DBMapping
+        {
+            get { return _dbMapping; }
+            set { _dbMapping = value; }
         }
         
         private string _dao;

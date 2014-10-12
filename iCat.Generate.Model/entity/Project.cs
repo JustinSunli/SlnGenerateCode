@@ -145,5 +145,11 @@ using System.Runtime.InteropServices;
             get { return _referenceNSpace; }
             set { _referenceNSpace = value; }
         }
+
+        public Project()
+        {
+            if (_referenceNSpace == null)
+                this._referenceNSpace = new List<string>();
+        }
     }
 }
