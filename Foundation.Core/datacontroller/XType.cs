@@ -59,6 +59,11 @@ namespace Foundation.Core
                         typeName = "Decimal";
                         break;
                     }
+                case "36":
+                    {
+                        typeName = "Guid";
+                        break;
+                    }
                 default:
                     {
                         typeName = "Object";
