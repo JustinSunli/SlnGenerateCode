@@ -1,4 +1,5 @@
-﻿using iCat.Generate.IService;
+﻿using Foundation.Core;
+using iCat.Generate.IService;
 using iCat.Generate.Model;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace iCat.Generate.Service
 {0}
 {1}
 using System.Data;
+using System;
 
 namespace {2}
 {{
@@ -83,7 +85,7 @@ namespace {2}
                 _Template = "\t\t/// <summary>\r\n" +
                             "\t\t/// {0}。\r\n" +
                             "\t\t/// </summary>\r\n" +
-                            "\t\tpublic string {1} {{ get; set; }}",
+                            "\t\tpublic {2} {1} {{ get; set; }}",
                 _IterType = EnumStrIteration.EntityFields
             });
 
@@ -99,10 +101,18 @@ namespace {2}
             #region
             IList<object> iterparams = new List<object>();
             DataRow dr = table._Columns.Tables[0].Rows[colsRowIndex];
+            string entityfieldtypename = XType.getEntityFieldTypeName(
+                dr[ColumnsData.xtype].ToString());
             switch (iter._IterType)
             {
                 case EnumStrIteration.EntityAssigns:
                     {
+                        if (entityfieldtypename.Equals("Byte[]"))
+                            iter._Template = @"
+            if (dr[{1}Mapping.{0}]!=System.DBNull.Value)
+                this.{0} = dr[{1}Mapping.{0}].ToString();";
+                        else
+                            iter._Template = "\t\t\tthis.{0} = dr[{1}Mapping.{0}].ToString();";
                         iterparams.Add(dr[ColumnsData.name]);
                         iterparams.Add(table._Name);
                         break;
@@ -111,6 +121,7 @@ namespace {2}
                     {
                         iterparams.Add(dr[ColumnsData.value]);
                         iterparams.Add(dr[ColumnsData.name]);
+                        iterparams.Add(entityfieldtypename);
                         break;
                     }
             }

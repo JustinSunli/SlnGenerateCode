@@ -60,8 +60,9 @@ namespace iCat.Generate.Service
             {
                 foreach (CodeIneration iter in strIterations)
                 {
+                    object[] paramsfn = _dlGetIterParams(iter, i, table);
                     string temp = string.Format(iter._Template,
-                    _dlGetIterParams(iter, i, table));
+                    paramsfn);
 
                     if (i == drs.Count - 1)
                         iter._Returns.Append(temp);

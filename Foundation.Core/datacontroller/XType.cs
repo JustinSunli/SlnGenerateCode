@@ -7,6 +7,27 @@ namespace Foundation.Core
 {
     public class XType
     {
+        public static string getEntityFieldTypeName(
+            string typeId)
+        {
+            #region
+            string typeName = "";
+            switch (typeId)
+            {
+                case "165":
+                    {
+                        typeName = "Byte[]";
+                        break;
+                    }
+                default:
+                    {
+                        typeName = "String";
+                        break;
+                    }
+            }
+            return typeName;
+            #endregion
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -19,9 +40,14 @@ namespace Foundation.Core
             string typeName = "";
             switch (typeId)
             {
-                case "56":
+                case "36":
                     {
-                        typeName = "Int32";
+                        typeName = "Guid";
+                        break;
+                    }
+                case "48":
+                    {
+                        typeName = "Byte";
                         break;
                     }
                 case "52":
@@ -29,24 +55,14 @@ namespace Foundation.Core
                         typeName = "Int16";
                         break;
                     }
-                case "127":
+                case "56":
                     {
-                        typeName = "Int64";
-                        break;
-                    }
-                case "231":
-                    {
-                        typeName = "String";
+                        typeName = "Int32";
                         break;
                     }
                 case "61":
                     {
                         typeName = "DateTime";
-                        break;
-                    }
-                case "48":
-                    {
-                        typeName = "Byte";
                         break;
                     }
                 case "104":
@@ -59,9 +75,19 @@ namespace Foundation.Core
                         typeName = "Decimal";
                         break;
                     }
-                case "36":
+                case "127":
                     {
-                        typeName = "Guid";
+                        typeName = "Int64";
+                        break;
+                    }
+                case "165":
+                    {
+                        typeName = "Byte[]";
+                        break;
+                    }
+                case "231":
+                    {
+                        typeName = "String";
                         break;
                     }
                 default:
