@@ -30,6 +30,7 @@ namespace iCatGenerator
         private void sbtnStartGen_Click(
             object sender, EventArgs e)
         {
+            #region
             if (this.folderBrowserDialog1.ShowDialog() 
                 == System.Windows.Forms.DialogResult.OK)
             {
@@ -42,12 +43,15 @@ namespace iCatGenerator
                 ExtMessage.Show(string.Format("成功生成到目录{0}！", path));
                 this.Close();
             }
+            #endregion
         }
 
         private void sbtnCancel_Click(
             object sender, EventArgs e)
         {
+            #region
             this.Close();
+            #endregion
         }
         private void fillTablesIsGen(
             DBStructure _dbStructure,
@@ -70,7 +74,8 @@ namespace iCatGenerator
             }
             #endregion
         }
-        private string getInValidTables(ref int isGenTables)
+        private string getInValidTables(
+            ref int isGenTables)
         {
             #region
             StringBuilder temp = new StringBuilder();
@@ -95,8 +100,10 @@ namespace iCatGenerator
             #endregion
         }
 
-        private void frmGenInfor_Load(object sender, EventArgs e)
+        private void frmGenInfor_Load(
+            object sender, EventArgs e)
         {
+            #region
             _slnService = (ISlnCreatorService)SpringManager.GetObject(SpringKeys.SlnGenService);
             fillTablesIsGen(frmMain._DBStructure, frmMain._SelectTables);
             string error = "警告：当前所选表中无关键字的数据表有{0} !";
@@ -107,7 +114,7 @@ namespace iCatGenerator
                 :string.Format(error, invalidtables);
 
             this.meditCodeInfor.Text = string.Format(infoformat, isgentables, error);
-
+            #endregion
         }
     }
 }

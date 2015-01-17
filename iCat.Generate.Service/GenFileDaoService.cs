@@ -38,6 +38,34 @@ namespace {2}
         {{
             return base.GetDataSet<{3}Data>(condition);
         }}
+
+        #region 用户自定义多表关联查询模版
+        /*
+        public DataSet Select{3}ByPage(
+            QueryCondition condition, 
+            out int totalCount) 
+        {{
+            #region
+            //该sql语句需用户自定义构建
+            string businesssql = @""select a.applyForId,a.userOfApplyFor,d.groupId,d.groupNO,d.groupName,
+a.applyForMemo,a.applyForTime 
+ from IMApplyForGroup a
+left join IMVerifyApplyFor b on a.applyForId=b.applyForId 
+join IMGroup d on a.groupId=d.groupId "";
+            //分页后的呈现数据源
+            DataSet ds = new DataSet();
+            //添加分页依据字段（必选，可多个），请根据实际业务定义。
+            condition.AddInKey({3}Mapping.primaryKeyName);
+            //填充数据源
+            base.fillDsByPage(ds, condition, businesssql);
+            //符合查询条件的数据记录（调用基类查询方法）
+            totalCount = base.selectRecordCount(
+                condition, businesssql);
+            return ds;
+            #endregion
+        }}
+        */
+        #endregion
     }}
 }}";
         //4为首字母小写的表名，3为原始表名，

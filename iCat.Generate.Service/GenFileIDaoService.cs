@@ -30,6 +30,20 @@ namespace {2}
         /// <param name=""condition"">查询条件</param>
         /// <returns>{3}的数据集</returns>
         {3}Data SelectSingleT(QueryCondition condition); 
+
+        #region 用户自定义多表关联查询接口模版
+        /*
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name=""condition""></param>
+        /// <param name=""totalCount""></param>
+        /// <returns></returns>
+        DataSet Select{3}ByPage(
+            QueryCondition condition, 
+            out int totalCount);
+        */
+        #endregion
     }}
 }}";
         //4为首字母小写的表名，3为原始表名，
