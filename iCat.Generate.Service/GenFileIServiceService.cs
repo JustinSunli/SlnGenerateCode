@@ -66,7 +66,21 @@ namespace {2}
         void Delete(
             ref {3}Data {4}Data,
             Entity{3} {4});
+
         {5}
+        /// <summary>
+        /// 根据实体的指定属性从数据库中查询符合条件的数据
+        /// </summary>
+        /// <param name=""{4}""></param>
+        /// <returns>符合条件的数据</returns>
+        {3}Data Get{3}ByKeys(
+            Entity{3} {4});
+        /// <summary>
+        /// 获取全部数据（表数据量大时慎用）
+        /// </summary>
+        /// <returns>表全部数据</returns>
+        {3}Data GetAll(
+            Entity{3} {4});
     }}
 }}";
         //4为首字母小写的表名，3为原始表名，

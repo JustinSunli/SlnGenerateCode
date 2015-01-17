@@ -115,14 +115,46 @@ namespace {2}
         }}
         #endregion
         
+        #region 检索操作
         {6}
+        /// <summary>
+        /// 根据实体的指定属性从数据库中查询符合条件的数据
+        /// </summary>
+        /// <param name=""{4}""></param>
+        /// <returns>符合条件的数据</returns>
+        public {3}Data Get{3}ByKeys(
+            Entity{3} {4})
+        {{
+            #region
+            {3}Data ds = null;
+            QueryCondition condition = new QueryCondition();
+            {7}
+
+            ds = _{3}Dao.SelectSingleT(condition);
+            return ds;
+            #endregion
+        }}
+
+        /// <summary>
+        /// 获取全部数据（表数据量大时慎用）
+        /// </summary>
+        /// <returns>表全部数据</returns>
+        public {3}Data GetAll(
+            Entity{3} {4})
+        {
+            #region
+            return _{3}Dao.SelectSingleT(null);
+            #endregion
+        }
+
+        #endregion
     }}
 }}";
         private string getMaxidCode(
             TableStructure table)
         {
             #region
-            string temp = @"#region 检索操作
+            string temp = @"
         /// <summary>
         /// 获取表[{0}]的最大编号
         /// </summary>
@@ -132,8 +164,7 @@ namespace {2}
             #region
             return _{0}Dao.GetMaxId();
             #endregion
-        }}
-        #endregion";
+        }}";
             temp = (table._HasIntPrimaryKey) ? string.Format(temp, table._Name) : "";
             return temp;
             #endregion
@@ -153,8 +184,32 @@ namespace {2}
             args.Add(table._ParamNamePrefix);
             args.Add(table._NameLower);
             args.Add(getMaxidCode(table));
+            args.Add(getByKeysConditionStr(table));
             all = string.Format(_fileTemplate, args.ToArray<string>());
             return all;
+            #endregion
+        }
+
+        private string getByKeysConditionStr(
+            TableStructure table)
+        {
+            #region
+            string format = @"
+            condition._DBContainer.AddAndCondition(
+                {0}Mapping.{1}, 
+                EnumCondition.Equal, 
+                {2}.{1}, {3});";
+            string allconditions = "";
+            foreach (string key in table._PrimaryKeys)
+                allconditions += string.Format(format, 
+                    new object[] { 
+                        table._Name, 
+                        key, 
+                        table._ParamNamePrefix,
+                        table.GetEnumSqlTypeName(key)
+                    });
+
+            return allconditions;
             #endregion
         }
 

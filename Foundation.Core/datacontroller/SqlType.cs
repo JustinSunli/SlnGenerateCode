@@ -13,7 +13,7 @@ using System.Text;
 
 namespace Foundation.Core
 {
-    class SqlType
+    public class SqlType
     {
         /// <summary>
         /// 从前台获取的字符串，转各类型forSql

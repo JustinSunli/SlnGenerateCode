@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foundation.Core;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -90,6 +91,18 @@ namespace iCat.Generate.Model
                 prefix = string.Format("{0}{1}", first, other);
             }
             return prefix;
+            #endregion
+        }
+
+        public string GetEnumSqlTypeName(
+            string columnName)
+        {
+            #region
+            string typename = "";
+            DataRow[] drs = this._Columns.Tables[0].Select("name='" + columnName+"'");
+            if (drs.Length > 0)
+                typename = SqlType.GetEnumString(drs[0][ColumnsData.xtype].ToString());
+            return typename;
             #endregion
         }
 
