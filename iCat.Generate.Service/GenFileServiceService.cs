@@ -139,8 +139,7 @@ namespace {2}
         /// 获取全部数据（表数据量大时慎用）
         /// </summary>
         /// <returns>表全部数据</returns>
-        public {3}Data GetAll(
-            Entity{3} {4})
+        public {3}Data GetAll()
         {
             #region
             return _{3}Dao.SelectSingleT(null);

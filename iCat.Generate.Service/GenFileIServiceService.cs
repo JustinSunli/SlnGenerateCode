@@ -69,7 +69,7 @@ namespace {2}
 
         {5}
         /// <summary>
-        /// 根据实体的指定属性从数据库中查询符合条件的数据
+        /// 根据实体的关键字从数据库中查询符合条件的数据
         /// </summary>
         /// <param name=""{4}""></param>
         /// <returns>符合条件的数据</returns>
@@ -79,7 +79,12 @@ namespace {2}
         /// 获取全部数据（表数据量大时慎用）
         /// </summary>
         /// <returns>表全部数据</returns>
-        {3}Data GetAll(
+        {3}Data GetAll();
+        /// <summary>
+        /// 根据实体的指定属性从数据库中查询符合条件的数据（条件只=）
+        /// </summary>
+        /// <returns>符合条件的数据</returns>
+        {3}Data GetData(
             Entity{3} {4});
     }}
 }}";
