@@ -43,6 +43,7 @@
     <Compile Include="ColumnsService.cs" />
     <Compile Include="DBService.cs" />
     <Compile Include="GenClientAppService.cs" />
+    <Compile Include="GenFileBusinessService.cs" />
     <Compile Include="GenFileDBMappingService.cs" />
     <Compile Include="GenFileIServiceService.cs" />
     <Compile Include="GenFileModelDataService.cs">
@@ -53,6 +54,11 @@
     <Compile Include="GenFileDaoService.cs" />
     <Compile Include="GenFileServiceBase.cs" />
     <Compile Include="GenFileServiceService.cs" />
+    <Compile Include="GenFileWCFInterfaceService.cs" />
+    <Compile Include="GenFileWCFServicesService.cs" />
+    <Compile Include="GenFileWebHandlerService.cs" />
+    <Compile Include="GenFileWebUIService.cs" />
+    <Compile Include="GenFileWinformUIService.cs" />
     <Compile Include="GenSlnService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

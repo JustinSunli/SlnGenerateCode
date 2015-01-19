@@ -111,6 +111,7 @@ using System.Runtime.InteropServices;
         public string _FolderName
         {
             get { return _folderName; }
+            set { _folderName = value; }
         }
         private string _name;
 

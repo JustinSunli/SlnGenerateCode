@@ -54,6 +54,8 @@
             this.sbtnDBTableNoneCheck = new DevExpress.XtraEditors.SimpleButton();
             this.sbtnDBTableAllCheck = new DevExpress.XtraEditors.SimpleButton();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.teWCFName = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueditDBList.Properties)).BeginInit();
@@ -71,6 +73,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teWCFName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -146,6 +149,8 @@
             // 
             // groupControl3
             // 
+            this.groupControl3.Controls.Add(this.teWCFName);
+            this.groupControl3.Controls.Add(this.labelControl6);
             this.groupControl3.Controls.Add(this.deCreateDate);
             this.groupControl3.Controls.Add(this.sbGenerateCode);
             this.groupControl3.Controls.Add(this.teCopyright);
@@ -158,7 +163,7 @@
             this.groupControl3.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupControl3.Location = new System.Drawing.Point(525, 132);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(241, 294);
+            this.groupControl3.Size = new System.Drawing.Size(241, 360);
             this.groupControl3.TabIndex = 2;
             this.groupControl3.Text = "代码配置";
             // 
@@ -181,7 +186,7 @@
             // 
             this.sbGenerateCode.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sbGenerateCode.Appearance.Options.UseFont = true;
-            this.sbGenerateCode.Location = new System.Drawing.Point(15, 262);
+            this.sbGenerateCode.Location = new System.Drawing.Point(15, 328);
             this.sbGenerateCode.Name = "sbGenerateCode";
             this.sbGenerateCode.Size = new System.Drawing.Size(212, 26);
             this.sbGenerateCode.TabIndex = 11;
@@ -248,7 +253,7 @@
             this.groupControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl4.Location = new System.Drawing.Point(0, 132);
             this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(525, 294);
+            this.groupControl4.Size = new System.Drawing.Size(525, 360);
             this.groupControl4.TabIndex = 3;
             this.groupControl4.Text = "数据表选择";
             // 
@@ -259,7 +264,7 @@
             this.ckDBTableList.Location = new System.Drawing.Point(2, 23);
             this.ckDBTableList.MultiColumn = true;
             this.ckDBTableList.Name = "ckDBTableList";
-            this.ckDBTableList.Size = new System.Drawing.Size(521, 235);
+            this.ckDBTableList.Size = new System.Drawing.Size(521, 301);
             this.ckDBTableList.TabIndex = 10;
             // 
             // panelControl1
@@ -268,7 +273,7 @@
             this.panelControl1.Controls.Add(this.sbtnDBTableNoneCheck);
             this.panelControl1.Controls.Add(this.sbtnDBTableAllCheck);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(2, 258);
+            this.panelControl1.Location = new System.Drawing.Point(2, 324);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(521, 34);
             this.panelControl1.TabIndex = 11;
@@ -306,11 +311,26 @@
             this.sbtnDBTableAllCheck.Text = "全选";
             this.sbtnDBTableAllCheck.Click += new System.EventHandler(this.sbtnDBTableAllCheck_Click);
             // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(14, 227);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(73, 14);
+            this.labelControl6.TabIndex = 12;
+            this.labelControl6.Text = "WCF服务名：";
+            // 
+            // teWCFName
+            // 
+            this.teWCFName.Location = new System.Drawing.Point(14, 247);
+            this.teWCFName.Name = "teWCFName";
+            this.teWCFName.Size = new System.Drawing.Size(213, 21);
+            this.teWCFName.TabIndex = 13;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(766, 426);
+            this.ClientSize = new System.Drawing.Size(766, 492);
             this.Controls.Add(this.groupControl4);
             this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.groupControl1);
@@ -340,6 +360,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teWCFName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -370,6 +391,8 @@
         private DevExpress.XtraEditors.SimpleButton sbtnDBTableReverseCheck;
         private DevExpress.XtraEditors.SimpleButton sbtnDBTableNoneCheck;
         private DevExpress.XtraEditors.SimpleButton sbtnDBTableAllCheck;
+        private DevExpress.XtraEditors.TextEdit teWCFName;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
     }
 }
 

@@ -22,8 +22,11 @@ namespace iCat.Generate.Model
             = "{0}.Model";
         private const string _appFormat
             = "{0}.Client";
+        private const string _businessFormat
+            = "{0}.Business";
 
         public const string KeyNameProjectName = "ProjectName";
+        public const string KeyNameWCFName = "WCFName";
         public const string KeyNameFoundation = "FoundationAssemblyName";
         public const string KeyNameSpringCoreName = "SpringCoreName";
         private object _prefix = "iCat.Assembly";
@@ -40,7 +43,16 @@ namespace iCat.Generate.Model
                 this._iService = string.Format(_iserviceFormat, _prefix);
                 this._model = string.Format(_modelFormat, _prefix);
                 this._app = string.Format(_appFormat, _prefix);
+                this._business = string.Format(_businessFormat, _prefix);
             }
+        }
+
+        private object _wcfName = "NormalDocumentOffice.WinServer";
+
+        public object _WCFName
+        {
+            get { return _wcfName; }
+            set { _wcfName = value; }
         }
 
         private object _foundationCore = "Foundation.Core";
@@ -65,12 +77,18 @@ namespace iCat.Generate.Model
             get { return _dbMapping; }
             set { _dbMapping = value; }
         }
-        
+
         private string _dao;
 
         public string _Dao
         {
             get { return _dao; }
+        }
+        private string _business;
+
+        public string _Business
+        {
+            get { return _business; }
         }
 
         private string _iDao;
@@ -114,6 +132,7 @@ namespace iCat.Generate.Model
             Namespace nspace = new Namespace();
 
             Config.Get(KeyNameProjectName, ref nspace._prefix);
+            Config.Get(KeyNameWCFName, ref nspace._wcfName);
             Config.Get(KeyNameFoundation, ref nspace._foundationCore);
             Config.Get(KeyNameSpringCoreName, ref nspace._customSpring);
             nspace._Prefix = nspace._prefix;

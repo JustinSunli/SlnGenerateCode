@@ -214,7 +214,7 @@ namespace iCat.Generate.Service
             StringBuilder references = this.getCsprojRefers(allProjects);
 
             string codedir = Path.Combine(
-                parentDir, this._Project._Name);
+                parentDir, this._Project._FolderName);
 
             this.SaveFile(codedir,
                 string.Format("{0}.csproj", this._Project._Name),
@@ -231,7 +231,7 @@ namespace iCat.Generate.Service
         {
             #region
             string codedir = Path.Combine(
-                parentDir, this._Project._Name, "Properties");
+                parentDir, this._Project._FolderName, "Properties");
 
             this.CheckDir(codedir);
 

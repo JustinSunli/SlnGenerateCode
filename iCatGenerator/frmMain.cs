@@ -51,6 +51,7 @@ namespace iCatGenerator
             this.deCreateDate.Properties.VistaEditTime = DefaultBoolean.True;
             this.deCreateDate.Text = Convert.ToDateTime(_Copyright._GenerateTime).ToString("yyyy-MM-dd HH:mm:ss");
             this.teSlnName.Text = _NSpace._Prefix.ToString();
+            this.teWCFName.Text = _NSpace._WCFName.ToString();
             #endregion
         }
         /// <summary>
@@ -230,12 +231,14 @@ namespace iCatGenerator
         private void saveConfig()
         {
             #region
-            object slnname, creator, creattime, company;
+            object slnname, creator, creattime, company, wcfname;
             slnname = this.teSlnName.Text;
             creator = this.teCreator.Text;
             creattime = this.deCreateDate.Text;
             company = this.teCopyright.Text;
+            wcfname = this.teWCFName.Text;
             Config.Update(Namespace.KeyNameProjectName, ref slnname);
+            Config.Update(Namespace.KeyNameWCFName, ref wcfname);
             Config.Update(Copyright.KeyNameCreator, ref creator);
             Config.Update(Copyright.KeyNameCreatTime, ref creattime);
             Config.Update(Copyright.KeyNameCompany, ref company);
@@ -243,6 +246,7 @@ namespace iCatGenerator
             _Copyright._Creater = creator;
             _Copyright._GenerateTime = creattime;
             _Copyright._Company = company;
+            _NSpace._WCFName = wcfname;
             #endregion
         }
         /// <summary>

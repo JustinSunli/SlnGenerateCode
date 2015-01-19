@@ -140,12 +140,11 @@ namespace {2}
         /// </summary>
         /// <returns>表全部数据</returns>
         public {3}Data GetAll()
-        {
+        {{
             #region
             return _{3}Dao.SelectSingleT(null);
             #endregion
-        }
-
+        }}
         #endregion
     }}
 }}";

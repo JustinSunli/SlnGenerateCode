@@ -184,6 +184,7 @@ EndProject",
                 _fileServices.Add(new GenFileModelService());
                 _fileServices.Add(new GenFileServiceService());
                 _fileServices.Add(new GenClientAppService());
+                _fileServices.Add(new GenFileBusinessService());
 
                 if (_fileServices != null)
                     _projects = new List<Project>();
