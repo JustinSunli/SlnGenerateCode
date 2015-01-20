@@ -112,6 +112,7 @@ namespace {2}
             usings.Add(nSpace._FoundationCore.ToString());
             usings.Add(nSpace._CustomSpring.ToString());
             usings.Add(nSpace._Model);
+            usings.Add(nSpace._IService);
             this._Project._ReferenceNSpace = usings;
             return base.StrcatUsing(usings);
             #endregion

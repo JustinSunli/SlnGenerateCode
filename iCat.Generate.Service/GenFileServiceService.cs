@@ -219,6 +219,8 @@ namespace {2}
             usings.Add(nSpace._IDao);
             usings.Add(nSpace._IService);
             usings.Add(nSpace._Model);
+            usings.Add(nSpace._DBMapping);
+            usings.Add(nSpace._FoundationCore.ToString());
             base._Project._ReferenceNSpace = usings;
             return base.StrcatUsing(usings);
             #endregion
